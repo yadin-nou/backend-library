@@ -6,7 +6,7 @@ userRouter.get("/", (req, res, next) => {
   try {
     res.json({
       status: "success",
-      message: "Welcome to userRouter testing",
+      message: "Welcome to Library System",
     });
   } catch (error) {
     res.json({
