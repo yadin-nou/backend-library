@@ -1,5 +1,5 @@
 import bookSchema from "./bookSchema.js";
 
 export const addBook = (book) => {
-  return userSchema(book).save();
+  return bookSchema.insertMany(book);
 };

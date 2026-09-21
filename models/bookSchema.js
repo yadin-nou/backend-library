@@ -10,11 +10,7 @@ const bookSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    img: {
-      type: String,
-      required: true,
-    },
-    genre: {
+    imgURL: {
       type: String,
       required: true,
     },
@@ -22,6 +18,11 @@ const bookSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    genre: {
+      type: String,
+      required: true,
+    },
+
     availability: {
       type: Boolean,
       default: true,
