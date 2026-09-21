@@ -1,5 +1,17 @@
 @url=http://localhost:8000/api/v1/users/
 @link=/api/v1/users/
 
+@admin=/api/v1/admin/
+
 ### GET Request
 GET {{url}}
+
+
+
+
+
+## Admin book inserting
+### POST add book
+POST {{admin}}addbook
+Content-Type: application/json
+
