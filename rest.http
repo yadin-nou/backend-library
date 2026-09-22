@@ -35,3 +35,7 @@ Content-Type: application/json
       "averageRating": 4.6
     }
 ]
+
+### GET data from book
+GET {{url}}{{admin}}book
+ 
