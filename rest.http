@@ -36,6 +36,20 @@ Content-Type: application/json
     }
 ]
 
-### GET data from book
+### GET data from all book
 GET {{url}}{{admin}}book
- 
+
+### GET data from by id
+GET {{url}}{{admin}}book?_id=6ab3d03c66e422e88e5a7aab
+Content-Type: application/json
+
+  
+
+
+### Delete book
+DELETE {{url}}{{admin}}
+Content-Type: application/json
+
+ [
+  "6ab3cb0166e422e88e5a7aa7"  
+ ]
