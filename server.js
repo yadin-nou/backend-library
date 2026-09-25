@@ -5,6 +5,7 @@ import adminRouter from "./src/routers/adminRouter.js";
 import authRouter from "./src/routers/authRoutes.js";
 import cors from "cors";
 import morgan from "morgan";
+import { errorHandler } from "./src/middleware/errorMiddleware.js";
 const app = express();
 const PORT = process.env.PORT || 8000;
 const userRouteLink = "/api/v1/users";
@@ -20,6 +21,8 @@ app.use(adminRouteLink, adminRouter);
 
 //api endpoints
 app.use(authRouterLink, authRouter);
+//use this error to catch as global
+app.use(errorHandler);
 dbConfig()
   .then(() => {
     app.listen(PORT, (error) =>
