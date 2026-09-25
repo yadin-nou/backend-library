@@ -59,3 +59,13 @@ Content-Type: application/json
 
 ### post new user
 POST {{url}}{{auth}}register
+Content-Type: application/json
+
+{
+    "fName":"Yadin",
+    "lName":"Nou",
+    "email":"nouyadin@gmail.com",
+    "phone":"043333",
+    "password":"123"
+}
+ 

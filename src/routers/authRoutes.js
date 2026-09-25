@@ -1,18 +1,10 @@
 import express from "express";
+import { inserNewUser } from "../controllers/authController.js";
 
 const authRouter = express.Router();
 
 //User signup
 
-authRouter.post("/register", (req, res, error) => {
-  try {
-    res.json({
-      status: "success",
-      message: "Register Successfully",
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
+authRouter.post("/register", inserNewUser);
 
 export default authRouter;
