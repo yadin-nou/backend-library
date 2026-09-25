@@ -2,7 +2,7 @@
 @link=/api/v1/users/
 
 @admin=/api/v1/admin/
-
+@auth=/api/v1/auth/
 ### GET Request
 GET {{url}}{{link}}
 
@@ -53,3 +53,9 @@ Content-Type: application/json
  [
   "6ab3cb0166e422e88e5a7aa7"  
  ]
+
+
+### AUTH API
+
+### post new user
+POST {{url}}{{auth}}register

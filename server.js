@@ -1,14 +1,15 @@
 import express from "express";
-import userRouter from "./routers/userRouter.js";
-import dbConfig from "./dbConnection/dbConfig.js";
-import adminRouter from "./routers/adminRouter.js";
+import userRouter from "./src/routers/userRouter.js";
+import dbConfig from "./src/dbConnection/dbConfig.js";
+import adminRouter from "./src/routers/adminRouter.js";
+import authRouter from "./src/routers/authRoutes.js";
 import cors from "cors";
 import morgan from "morgan";
 const app = express();
 const PORT = process.env.PORT || 8000;
 const userRouteLink = "/api/v1/users";
 const adminRouteLink = "/api/v1/admin";
-
+const authRouterLink = "/api/v1/auth";
 //database conneciton
 
 app.use(cors());
@@ -17,6 +18,8 @@ app.use(express.json());
 app.use(userRouteLink, userRouter);
 app.use(adminRouteLink, adminRouter);
 
+//api endpoints
+app.use(authRouterLink, authRouter);
 dbConfig()
   .then(() => {
     app.listen(PORT, (error) =>
