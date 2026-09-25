@@ -6,6 +6,7 @@ import authRouter from "./src/routers/authRoutes.js";
 import cors from "cors";
 import morgan from "morgan";
 import { errorHandler } from "./src/middleware/errorMiddleware.js";
+import { responseClient } from "./src/middleware/responseClient.js";
 const app = express();
 const PORT = process.env.PORT || 8000;
 const userRouteLink = "/api/v1/users";
@@ -19,8 +20,15 @@ app.use(express.json());
 app.use(userRouteLink, userRouter);
 app.use(adminRouteLink, adminRouter);
 
+//server status reponse
+app.get("/", (req, res) => {
+  const message = "Server is live!";
+  responseClient({ req, res, message });
+});
+
 //api endpoints
 app.use(authRouterLink, authRouter);
+
 //use this error to catch as global
 app.use(errorHandler);
 dbConfig()
