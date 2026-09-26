@@ -54,6 +54,18 @@ Content-Type: application/json
  [
   "6ab3cb0166e422e88e5a7aa7"  
  ]
+### Update  book
+patch {{url}}{{admin}}
+Content-Type: application/json
+
+ {
+"_id":"6ab66b0e3db9813f98e1339d",
+  "title": "Moby Yadin",
+  "author": "Herman Melville",
+  "imgURL": "https://covers.openlibrary.org/b/isbn/9781503280786-L.jpg",
+  "isbn": "9781503280786",
+  "genre": "Classic"
+ }
 
 
 ### AUTH API

@@ -1,5 +1,10 @@
 import express from "express";
-import { addBook, deleteBooks, getAllBooks } from "../models/bookModel.js";
+import {
+  addBook,
+  deleteBooks,
+  getAllBooks,
+  updateBooks,
+} from "../models/bookModel.js";
 const adminRouter = express.Router();
 
 adminRouter.post("/addbook", async (req, res, next) => {
@@ -17,8 +22,9 @@ adminRouter.post("/addbook", async (req, res, next) => {
 
 adminRouter.get("/book", async (req, res, next) => {
   try {
+    console.log(req.query, "yadin");
     const result = await getAllBooks(req.query);
-    //console.log(req.query);
+
     res.json({
       status: "success",
       message: "recieved all abook",
@@ -38,6 +44,28 @@ adminRouter.delete("/", async (req, res, next) => {
           data: result,
           status: "success",
           message: "Delete successfuly",
+        })
+      : res.json({
+          status: "error",
+          message: error.message,
+        });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+adminRouter.patch("/", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const updateResult = await updateBooks(req.body._id, req.body);
+    updateResult
+      ? res.json({
+          data: updateResult,
+          status: "success",
+          message: "update successfuly",
         })
       : res.json({
           status: "error",

@@ -10,3 +10,10 @@ export const getAllBooks = (filter = {}) => {
 export const deleteBooks = (_ids) => {
   return bookSchema.deleteMany({ _id: { $in: _ids } });
 };
+
+export const updateBooks = (id, obj) => {
+  return bookSchema.updateOne(
+    { _id: id }, // Filter by ID
+    { $set: obj }, // Fields to update
+  );
+};
