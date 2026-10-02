@@ -1,10 +1,12 @@
 import { responseClient } from "../middleware/responseClient.js";
 import { createNewSession } from "../models/sessionModel.js";
 import { createNewUser } from "../models/userModel.js";
+import { userActivationUrlEmail } from "../services/emailService.js";
 import { hassPassword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
 
 export const inserNewUser = async (req, res, next) => {
+  const front_url = process.env.URL_FRONTEND;
   try {
     // to do signup process
     // console.log(req.body);
@@ -18,15 +20,15 @@ export const inserNewUser = async (req, res, next) => {
         token: uuidv4(),
         association: user.email,
       });
-      console.log(session);
+      //console.log(session);
+
       if (session?._id) {
         const url =
-          process.env.URL_FRONTEND +
-          "?sessionId=" +
-          session._id +
-          "&t=" +
-          session.token;
-        console.log(url);
+          front_url + "?sessionId=" + session._id + "&t=" + session.token;
+        const emailId = await userActivationUrlEmail({
+          email: user.email,
+          url: url,
+        });
       }
 
       const message = "successfull added user";

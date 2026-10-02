@@ -31,6 +31,7 @@ app.use(authRouterLink, authRouter);
 
 //use this error to catch as global
 app.use(errorHandler);
+
 dbConfig()
   .then(() => {
     app.listen(PORT, (error) =>
