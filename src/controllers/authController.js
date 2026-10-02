@@ -16,7 +16,7 @@ export const inserNewUser = async (req, res, next) => {
     // receieve the user data
     const user = await createNewUser(req.body);
     if (user?._id) {
-      const session = await createNewSession({
+      let session = await createNewSession({
         token: uuidv4(),
         association: user.email,
       });
@@ -45,6 +45,23 @@ export const inserNewUser = async (req, res, next) => {
       error.message = "The email already exist, try another email";
       error.statusCode = 400;
     }
+    next(error);
+  }
+};
+
+export const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    //get user by email
+    console.log(email, password);
+    //compare password
+    //create jwts
+    //reponse jwts
+
+    const message = "User Login activty";
+    const statusCode = 201;
+    responseClient({ req, res, message, statusCode });
+  } catch (error) {
     next(error);
   }
 };

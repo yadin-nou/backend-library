@@ -82,3 +82,12 @@ Content-Type: application/json
     "password":"123"
 }
  
+### Login user
+POST {{url}}{{auth}}login
+Content-Type: application/json
+
+{
+    "email":"nouyadin007@gmail.com",
+    "password":"123"
+}
+ 
