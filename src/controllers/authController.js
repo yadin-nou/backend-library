@@ -1,8 +1,8 @@
 import { responseClient } from "../middleware/responseClient.js";
 import { createNewSession } from "../models/sessionModel.js";
-import { createNewUser } from "../models/userModel.js";
+import { createNewUser, getUserByEmail } from "../models/userModel.js";
 import { userActivationUrlEmail } from "../services/emailService.js";
-import { hassPassword } from "../utils/bcrypt.js";
+import { comparePassword, hassPassword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
 
 export const inserNewUser = async (req, res, next) => {
@@ -53,13 +53,28 @@ export const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     //get user by email
-    console.log(email, password);
+    const user = await getUserByEmail(email);
+    if (user?._id) {
+      console.log(user);
+    }
     //compare password
-    //create jwts
-    //reponse jwts
+    const isPassMatch = comparePassword(password, user.password);
+    if (isPassMatch) {
+      console.log("Login successfully!");
+      //create jwts
+      const jwts = {};
+      //reponse jwts
+      responseClient({
+        req,
+        res,
+        message: "Login Successfully!",
+        payload: jwts,
+      });
+      return;
+    }
 
-    const message = "User Login activty";
-    const statusCode = 201;
+    const message = "Invalid Login details!";
+    const statusCode = 401;
     responseClient({ req, res, message, statusCode });
   } catch (error) {
     next(error);

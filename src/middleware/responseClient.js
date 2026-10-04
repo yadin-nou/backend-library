@@ -1,10 +1,17 @@
 //pass argument as object is better than normal, because they can be not in order.
-export const responseClient = ({ req, res, message, statusCode = 200 }) => {
+export const responseClient = ({
+  req,
+  res,
+  message,
+  payload,
+  statusCode = 200,
+}) => {
   //success response
   req.success = () => {
     return res.status(statusCode).json({
       status: "success",
       message,
+      payload,
     });
   };
   //error response

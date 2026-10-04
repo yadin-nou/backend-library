@@ -8,12 +8,14 @@ import {
 } from "./joiConst.js";
 import { validateData } from "./joiValidation.js";
 import Joi from "joi";
-// export const loginDataValidation = (req, res, next) => {
-//   const obj = {
-//     email:,
-//     password,
-//   };
-// };
+
+export const loginDataValidation = (req, res, next) => {
+  const obj = {
+    email: EMAIL_REQ,
+    password: PASSWORD_REQ,
+  };
+  validateData({ req, res, next, obj });
+};
 
 export const newUserDataValidation = (req, res, next) => {
   const obj = {

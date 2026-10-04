@@ -5,3 +5,7 @@ import userSchema from "./userSchema.js";
 export const createNewUser = (userObj) => {
   return userSchema(userObj).save();
 };
+
+export const getUserByEmail = (email) => {
+  return userSchema.findOne({ email });
+};
