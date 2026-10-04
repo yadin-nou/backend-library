@@ -77,7 +77,7 @@ Content-Type: application/json
 {
     "fName":"Yadin",
     "lName":"Nou",
-    "email":"nouyadin007@gmail.com",
+    "email":"nouyadin@hotmail.com",
     "phone":"043333",
     "password":"123"
 }
@@ -88,6 +88,6 @@ Content-Type: application/json
 
 {
     "email":"nouyadin007@gmail.com",
-    "password":"1230"
+    "password":"123"
 }
  
