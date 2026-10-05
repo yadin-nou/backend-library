@@ -6,7 +6,13 @@ export const validateData = ({ req, res, next, obj }) => {
   //pass your data, req.body, to the schema,
   const value = schema.validate(req.body);
   if (value.error) {
-    return responseClient({ req, res, message: value.error, statusCode: 400 });
+    //  console.log(value.error.message);
+    return responseClient({
+      req,
+      res,
+      message: value.error.message,
+      statusCode: 400,
+    });
   }
   next();
   // if pass go next() or response error

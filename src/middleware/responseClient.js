@@ -20,6 +20,7 @@ export const responseClient = ({
     return res.status(statusCode).json({
       status: "error",
       message,
+      payload,
     });
   };
   //status code between 200 to 300 is success response, otherwise, is error response

@@ -42,9 +42,11 @@ export const inserNewUser = async (req, res, next) => {
   } catch (error) {
     if (error.message.includes("E11000 duplicate key error collection")) {
       // add message to overwrite original message
-      error.message = "The email already exist, try another email";
+      error.message = "The email is exist, try another email";
       error.statusCode = 400;
     }
+    //console.log(error, "bean");
+
     next(error);
   }
 };
