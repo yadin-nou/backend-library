@@ -125,7 +125,7 @@ export const activateUser = async (req, res, next) => {
       const message = "Your email has been activated!";
       responseClient({ req, res, message });
     } else {
-      const message = "your session has expired";
+      const message = "Your session has expired";
       const statusCode = 400;
       responseClient({ req, res, message, statusCode });
     }
