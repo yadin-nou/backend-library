@@ -1,5 +1,9 @@
 import express from "express";
-import { inserNewUser, loginUser } from "../controllers/authController.js";
+import {
+  activateUser,
+  inserNewUser,
+  loginUser,
+} from "../controllers/authController.js";
 import {
   loginDataValidation,
   newUserDataValidation,
@@ -14,4 +18,6 @@ authRouter.post("/register", newUserDataValidation, inserNewUser);
 // authRouter.post("/activate-user", userActivationDataValidateion,activateUser);
 //authRouter.post("/register", inserNewUser);
 authRouter.post("/login", loginDataValidation, loginUser);
+
+authRouter.post("/activate-user", activateUser);
 export default authRouter;

@@ -24,7 +24,11 @@ export const inserNewUser = async (req, res, next) => {
 
       if (session?._id) {
         const url =
-          front_url + "?sessionId=" + session._id + "&t=" + session.token;
+          front_url +
+          "/activate-user?sessionId=" +
+          session._id +
+          "&t=" +
+          session.token;
         const emailId = await userActivationUrlEmail({
           email: user.email,
           url: url,
@@ -78,6 +82,16 @@ export const loginUser = async (req, res, next) => {
     const message = "Invalid Login details!";
     const statusCode = 401;
     responseClient({ req, res, message, statusCode });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const activateUser = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const message = "Your email has been activated!";
+    responseClient({ req, res, message });
   } catch (error) {
     next(error);
   }

@@ -81,6 +81,14 @@ Content-Type: application/json
     "phone":"043333",
     "password":"123"
 }
+### post to activate user
+POST {{url}}{{auth}}activate-user
+Content-Type: application/json
+
+{
+    "sessoin_id":"Yadin",
+    "t":"Nou"
+}
  
 ### Login user
 POST {{url}}{{auth}}login
