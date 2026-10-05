@@ -1,7 +1,12 @@
 import { responseClient } from "../middleware/responseClient.js";
-import { createNewSession } from "../models/sessionModel.js";
-import { createNewUser, getUserByEmail } from "../models/userModel.js";
+import { createNewSession, deleteSession } from "../models/sessionModel.js";
+import {
+  createNewUser,
+  getUserByEmail,
+  updateUser,
+} from "../models/userModel.js";
 import { userActivationUrlEmail } from "../services/emailService.js";
+import { userAccountActivatedNotifcation } from "../services/emailTemplate.js";
 import { comparePassword, hassPassword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -88,10 +93,36 @@ export const loginUser = async (req, res, next) => {
 };
 
 export const activateUser = async (req, res, next) => {
+  const front_url = process.env.URL_FRONTEND;
   try {
-    console.log(req.body);
-    const message = "Your email has been activated!";
-    responseClient({ req, res, message });
+    const { sessionId, t } = req.body;
+    const result = await deleteSession({
+      _id: sessionId,
+      token: t,
+    });
+    // after delete successfull server response back with data have been deleted
+    // so we can catch up association field which contain email.
+    if (result?._id) {
+      //update user collection via associatin email
+      const user = await updateUser(
+        { email: result.association },
+        { status: "active" },
+      );
+      if (user?._id) {
+        console.log(user.email, user.fName);
+        userAccountActivatedNotifcation({
+          email: user.email,
+          name: user.fName,
+          url: front_url + "/login",
+        });
+      }
+      const message = "Your email has been activated!";
+      responseClient({ req, res, message });
+    } else {
+      const message = "your session has expired";
+      const statusCode = 400;
+      responseClient({ req, res, message, statusCode });
+    }
   } catch (error) {
     next(error);
   }

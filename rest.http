@@ -86,10 +86,10 @@ POST {{url}}{{auth}}activate-user
 Content-Type: application/json
 
 {
-    "sessoin_id":"Yadin",
-    "t":"Nou"
+    "sessionId":"6ac36dba711252f34b08c515",
+    "t":"83ba0368-e29b-4c88-8353-21a7e6c40977"
 }
- 
+
 ### Login user
 POST {{url}}{{auth}}login
 Content-Type: application/json

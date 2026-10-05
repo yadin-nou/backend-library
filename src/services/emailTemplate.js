@@ -19,3 +19,24 @@ export const userActivationUrlEMailTemplate = ({ email, name, url }) => {
   };
   return obj;
 };
+export const userAccountActivatedNotifcation = ({ email, name, url }) => {
+  const obj = {
+    from: `"Local Library" <${process.env.SMTP_USER}>`,
+    to: email,
+    subject: "Great News! Activate your new account",
+    text: `Hello ${name} , your account has been activated.`,
+    html: `<p>Your account has been activated. Click here to login.</p>
+            <br/>
+            <br/>
+            <a href=${url}>
+            <button style="background:green; color:white;padding:2rem">Login Now</button></a>
+            <br/>
+            <br/>
+
+            Regards,
+            </br>
+            ${name}
+            `,
+  };
+  return obj;
+};
