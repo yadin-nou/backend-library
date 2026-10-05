@@ -11,5 +11,8 @@ export const getUserByEmail = (email) => {
 };
 
 export const updateUser = (filter, update) => {
-  return userSchema.findOneAndUpdate(filter, update, { new: true });
+  return userSchema.findOneAndUpdate(filter, update, {
+    returnDocument: "after",
+    runValidators: true,
+  });
 };

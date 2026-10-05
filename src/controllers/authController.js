@@ -5,8 +5,10 @@ import {
   getUserByEmail,
   updateUser,
 } from "../models/userModel.js";
-import { userActivationUrlEmail } from "../services/emailService.js";
-import { userAccountActivatedNotifcation } from "../services/emailTemplate.js";
+import {
+  userAccountActivatedNotificationEmail,
+  userActivationUrlEmail,
+} from "../services/emailService.js";
 import { comparePassword, hassPassword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -34,7 +36,7 @@ export const inserNewUser = async (req, res, next) => {
           session._id +
           "&t=" +
           session.token;
-        const emailId = await userActivationUrlEmail({
+        await userActivationUrlEmail({
           email: user.email,
           url: url,
         });
@@ -102,19 +104,23 @@ export const activateUser = async (req, res, next) => {
     });
     // after delete successfull server response back with data have been deleted
     // so we can catch up association field which contain email.
+
     if (result?._id) {
       //update user collection via associatin email
       const user = await updateUser(
         { email: result.association },
         { status: "active" },
       );
+
       if (user?._id) {
-        console.log(user.email, user.fName);
-        userAccountActivatedNotifcation({
+        // console.log(user.email, user.fName);
+        const activateID = await userAccountActivatedNotificationEmail({
           email: user.email,
           name: user.fName,
           url: front_url + "/login",
         });
+      } else {
+        console.log("No user matched for email:", result.association);
       }
       const message = "Your email has been activated!";
       responseClient({ req, res, message });

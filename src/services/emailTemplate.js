@@ -7,19 +7,19 @@ export const userActivationUrlEMailTemplate = ({ email, name, url }) => {
     html: `<p>Your account has been reated. Click the button below to activate your account.</p>
             <br/>
             <br/>
-            <a href=${url}>
+            <a href="${url}">
             <button style="background:green; color:white;padding:2rem">Activate Now</button></a>
             <br/>
             <br/>
 
             Regards,
             </br>
-            Yadin
+             Library Administrator
             `,
   };
   return obj;
 };
-export const userAccountActivatedNotifcation = ({ email, name, url }) => {
+export const userAccountActivatedNotificationTem = ({ email, name, url }) => {
   const obj = {
     from: `"Local Library" <${process.env.SMTP_USER}>`,
     to: email,
@@ -28,15 +28,16 @@ export const userAccountActivatedNotifcation = ({ email, name, url }) => {
     html: `<p>Your account has been activated. Click here to login.</p>
             <br/>
             <br/>
-            <a href=${url}>
+            <a href="${url}">
             <button style="background:green; color:white;padding:2rem">Login Now</button></a>
             <br/>
             <br/>
 
             Regards,
             </br>
-            ${name}
+            Library Administrator
             `,
   };
+
   return obj;
 };
