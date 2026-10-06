@@ -11,6 +11,7 @@ import {
 } from "../services/emailService.js";
 import { comparePassword, hassPassword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
+import { getJWTS } from "../utils/jwt.js";
 
 export const inserNewUser = async (req, res, next) => {
   const front_url = process.env.URL_FRONTEND;
@@ -75,7 +76,7 @@ export const loginUser = async (req, res, next) => {
     if (isPassMatch) {
       console.log("Login successfully!");
       //create jwts
-      const jwts = {};
+      const jwts = await getJWTS(email);
       //reponse jwts
       responseClient({
         req,
