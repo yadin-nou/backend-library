@@ -74,20 +74,34 @@ export const loginUser = async (req, res, next) => {
     //compare password
     const isPassMatch = comparePassword(password, user.password);
     if (isPassMatch) {
-      console.log("Login successfully!");
-      //create jwts
-      const jwts = await getJWTS(email);
-      //reponse jwts
-      responseClient({
-        req,
-        res,
-        message: "Login Successfully!",
-        payload: jwts,
-      });
-      return;
+      if (user?.status === "inactive") {
+        const statusCode = 401;
+        responseClient({
+          req,
+          res,
+          message: "Account is In-Active, please activate account by Reset.",
+          payload: {},
+          statusCode,
+        });
+        return;
+      } else {
+        //create jwts
+        const jwts = await getJWTS(email);
+        user.password = undefined;
+        user.refreshJWT = undefined;
+        jwts.users = user;
+        //reponse jwts
+        responseClient({
+          req,
+          res,
+          message: "Login Successfully!",
+          payload: jwts,
+        });
+        return;
+      }
     }
 
-    const message = "Invalid Login details!";
+    const message = "Invalid email or password !";
     const statusCode = 401;
     responseClient({ req, res, message, statusCode });
   } catch (error) {
