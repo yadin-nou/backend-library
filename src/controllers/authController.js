@@ -87,9 +87,9 @@ export const loginUser = async (req, res, next) => {
       } else {
         //create jwts
         const jwts = await getJWTS(email);
-        user.password = undefined;
-        user.refreshJWT = undefined;
-        jwts.users = user;
+        // user.password = undefined;
+        // user.refreshJWT = undefined;
+        // jwts.users = user;
         //reponse jwts
         responseClient({
           req,

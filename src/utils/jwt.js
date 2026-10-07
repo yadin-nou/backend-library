@@ -27,11 +27,21 @@ export const createRefreshJWT = async (email) => {
   return user?._id ? token : null;
 };
 
-// //decode access accessJWT and refreshJWT
+// //call both  accessJWT and refreshJWT to get code
 
 export const getJWTS = async (email) => {
   return {
     accessJWT: await createAccesJWT(email),
     refreshJWT: await createRefreshJWT(email),
   };
+};
+
+// decode accessJWT
+
+export const verifyAccessJWT = (token) => {
+  try {
+    return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+  } catch (error) {
+    return error.message;
+  }
 };

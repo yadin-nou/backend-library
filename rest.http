@@ -3,9 +3,6 @@
 
 @admin=/api/v1/admin/
 @auth=/api/v1/auth/
-### GET Request
-GET {{url}}{{link}}
-
 
 ### GET request to server only, not router
 GET {{url}}
@@ -97,6 +94,9 @@ Content-Type: application/json
 
 {
     "email":"nouyadin007@gmail.com",
-    "password":"1234"
+    "password":"123"
 }
  
+### GET Request user profile
+GET {{url}}{{link}}profile
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTM4Mzk1NywiZXhwIjoxNzkxMzg0ODU3fQ.kMXDyJ3REz4eY-Dj5PSlMoiWOHfhCLYQQSTbyJ7UWVs
