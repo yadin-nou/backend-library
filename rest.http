@@ -99,4 +99,4 @@ Content-Type: application/json
  
 ### GET Request user profile
 GET {{url}}{{link}}profile
-authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTM4Mzk1NywiZXhwIjoxNzkxMzg0ODU3fQ.kMXDyJ3REz4eY-Dj5PSlMoiWOHfhCLYQQSTbyJ7UWVs
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTQzOTk1NCwiZXhwIjoxNzkxNDQwODU0fQ.8rJWQDkJ845YGeFt5jJXQGnFYX4TxgBJi5IQmwts8SY
