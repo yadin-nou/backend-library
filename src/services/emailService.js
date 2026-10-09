@@ -12,7 +12,7 @@ export const userActivationUrlEmail = async (obj) => {
       userActivationUrlEMailTemplate(obj),
     );
 
-    console.log(info);
+    //console.log(info);
     return { status: "success", info };
   } catch (error) {
     console.error("Failed to send activation email:", error);

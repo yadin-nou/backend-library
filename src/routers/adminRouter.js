@@ -22,7 +22,7 @@ adminRouter.post("/addbook", async (req, res, next) => {
 
 adminRouter.get("/book", async (req, res, next) => {
   try {
-    console.log(req.query, "yadin");
+    //console.log(req.query, "yadin");
     const result = await getAllBooks(req.query);
 
     res.json({
@@ -37,7 +37,7 @@ adminRouter.get("/book", async (req, res, next) => {
 adminRouter.delete("/", async (req, res, next) => {
   try {
     //const { _id } = req.userInfo;
-    console.log(req.body);
+    //console.log(req.body);
     const result = await deleteBooks(req.body);
     result
       ? res.json({
@@ -59,7 +59,7 @@ adminRouter.delete("/", async (req, res, next) => {
 
 adminRouter.patch("/", async (req, res, next) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const updateResult = await updateBooks(req.body._id, req.body);
     updateResult
       ? res.json({
