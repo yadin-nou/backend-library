@@ -45,3 +45,13 @@ export const verifyAccessJWT = (token) => {
     return error.message;
   }
 };
+
+// decode refreshJWT
+
+export const verifyRefreshJWT = (token) => {
+  try {
+    return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+  } catch (error) {
+    return error.message;
+  }
+};

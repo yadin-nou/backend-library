@@ -96,7 +96,11 @@ Content-Type: application/json
     "email":"nouyadin007@gmail.com",
     "password":"123"
 }
+
+### GET Request new JWT by refreshJWT
+GET {{url}}{{auth}}renew-jwt
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTU0ODUxOSwiZXhwIjoxNzk0MTQwNTE5fQ.9DNutpHCTiNyTJT-0A0Ei_KJYxDW6b6WLV8b7PoKoVA
  
 ### GET Request user profile
 GET {{url}}{{link}}profile
-authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTQzOTk1NCwiZXhwIjoxNzkxNDQwODU0fQ.8rJWQDkJ845YGeFt5jJXQGnFYX4TxgBJi5IQmwts8SY
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTU0OTA1NywiZXhwIjoxNzkxNTQ5OTU3fQ.5o2MDWTsICd1zpcERD0zuczvthp4mwOa99e3yjv7QXE

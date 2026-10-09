@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   responseClient({ req, res, message });
 });
 
-//api endpoints
+//api endpoints for signup and login
 app.use(authRouterLink, authRouter);
 
 //use this error to catch as global

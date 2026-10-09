@@ -8,6 +8,7 @@ import {
   loginDataValidation,
   newUserDataValidation,
 } from "../middleware/validation/authDataValidation.js";
+import { renewRefreshJWTMiddleWare } from "../middleware/authMiddleware.js";
 
 const authRouter = express.Router();
 
@@ -20,4 +21,6 @@ authRouter.post("/register", newUserDataValidation, inserNewUser);
 authRouter.post("/login", loginDataValidation, loginUser);
 
 authRouter.post("/activate-user", activateUser);
+
+authRouter.get("/renew-jwt", renewRefreshJWTMiddleWare);
 export default authRouter;
