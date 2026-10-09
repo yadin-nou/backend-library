@@ -1,6 +1,7 @@
 import express from "express";
 import {
   activateUser,
+  authGenerateOTP,
   inserNewUser,
   loginUser,
 } from "../controllers/authController.js";
@@ -19,8 +20,8 @@ authRouter.post("/register", newUserDataValidation, inserNewUser);
 // authRouter.post("/activate-user", userActivationDataValidateion,activateUser);
 //authRouter.post("/register", inserNewUser);
 authRouter.post("/login", loginDataValidation, loginUser);
-
 authRouter.post("/activate-user", activateUser);
-
 authRouter.get("/renew-jwt", renewRefreshJWTMiddleWare);
+authRouter.post("/otp", authGenerateOTP);
+
 export default authRouter;

@@ -104,3 +104,13 @@ authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3Q
 ### GET Request user profile
 GET {{url}}{{link}}profile
 authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTU0OTA1NywiZXhwIjoxNzkxNTQ5OTU3fQ.5o2MDWTsICd1zpcERD0zuczvthp4mwOa99e3yjv7QXE
+
+
+### POST generate OTP
+POST {{url}}{{auth}}otp
+Content-Type: application/json
+
+{
+    "email":"nouyadin007@gmail.com"
+ 
+}

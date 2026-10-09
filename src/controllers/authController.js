@@ -12,6 +12,7 @@ import {
 import { comparePassword, hassPassword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
 import { getJWTS } from "../utils/jwt.js";
+import { generateOTP } from "../utils/randomGenderate.js";
 
 export const inserNewUser = async (req, res, next) => {
   const front_url = process.env.URL_FRONTEND;
@@ -143,6 +144,26 @@ export const activateUser = async (req, res, next) => {
       const message = "Your session has expired";
       const statusCode = 400;
       responseClient({ req, res, message, statusCode });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+export const authGenerateOTP = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const { email } = req.body;
+    //get user by email
+    const user = await getUserByEmail(email);
+    if (user?.id) {
+      const otp = generateOTP(4);
+      const session = await createNewSession({
+        token: otp,
+        association: email,
+      });
+      if (session?._id) {
+      }
+      //Send Email
     }
   } catch (error) {
     next(error);
