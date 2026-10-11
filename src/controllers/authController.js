@@ -174,7 +174,7 @@ export const authGenerateOTP = async (req, res, next) => {
         const sendOTP = await sendUserOTPCodeService(obj);
         //console.log(sendOTP, "email");
         if (sendOTP?.status === "success") {
-          const message = "OTP has sent to your email!.";
+          const message = "OTP has sent to your email!.Pleae check your email";
           console.log(sendOTP.info.messageId);
           return responseClient({ req, res, message });
         } else {
@@ -183,6 +183,10 @@ export const authGenerateOTP = async (req, res, next) => {
           return responseClient({ req, res, message, statusCode });
         }
       }
+    } else {
+      const message = "Email not found!";
+      const statusCode = 401;
+      return responseClient({ req, res, message, statusCode });
     }
   } catch (error) {
     next(error);

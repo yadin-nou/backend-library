@@ -111,7 +111,7 @@ POST {{url}}{{auth}}otp
 Content-Type: application/json
 
 {
-    "email":"nouyadin007@gmail.com"
+    "email":"nouyadin@gmail.com"
  
 }
 
