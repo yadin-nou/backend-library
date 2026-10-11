@@ -67,3 +67,28 @@ export const sendUserOTPCodeTemplate = ({ email, name, otp }) => {
 
   return obj;
 };
+export const sendUserEmailNotificationUpdatePasswordTempalte = ({
+  email,
+  name,
+}) => {
+  const obj = {
+    from: `"Local Library" <${process.env.SMTP_USER}>`,
+    to: email,
+    subject: "Great News, Password Updated",
+    text: `Hello ${name} , your paassword has been updated successfully!`,
+    html: `
+      Hello ${name} , <br/>.
+      <p>Your password has been updated successfully, . <br/> </p>
+    <p>You can login with a new password.</p>
+          
+            <br/>
+            <br/>
+
+            Regards,
+            </br>
+            Library Administrator
+            `,
+  };
+
+  return obj;
+};

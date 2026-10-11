@@ -10,6 +10,7 @@ import {
   updateUser,
 } from "../models/userModel.js";
 import {
+  sendUserEmailNotificationUpdatePasswordService,
   sendUserOTPCodeService,
   userAccountActivatedNotificationEmail,
   userActivationUrlEmail,
@@ -207,10 +208,16 @@ export const authResetPassword = async (req, res, next) => {
     // receieve the user data
     const session = await getSession({ association: email, token: otp });
     if (session?._id) {
-      const user = await updateUser({ email: association }, { password });
+      const user = await updateUser(
+        { email: session.association },
+        { password },
+      );
       if (user?._id) {
         //send email
-
+        sendUserEmailNotificationUpdatePasswordService({
+          email,
+          name: user.fName,
+        });
         return responseClient({
           req,
           res,
