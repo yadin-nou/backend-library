@@ -111,7 +111,18 @@ POST {{url}}{{auth}}otp
 Content-Type: application/json
 
 {
-    "email":"nouyadin@gmail.com"
+    "email":"nouyadin007@gmail.com"
+ 
+}
+### POST reset password
+POST {{url}}{{auth}}reset-pwd
+Content-Type: application/json
+
+{
+    "email":"nouyadin007@gmail.com",
+    "otp":470455,
+    "password": "123456"
+
  
 }
 

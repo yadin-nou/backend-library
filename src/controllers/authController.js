@@ -1,5 +1,9 @@
 import { responseClient } from "../middleware/responseClient.js";
-import { createNewSession, deleteSession } from "../models/sessionModel.js";
+import {
+  createNewSession,
+  deleteSession,
+  getSession,
+} from "../models/sessionModel.js";
 import {
   createNewUser,
   getUserByEmail,
@@ -188,6 +192,38 @@ export const authGenerateOTP = async (req, res, next) => {
       const statusCode = 401;
       return responseClient({ req, res, message, statusCode });
     }
+  } catch (error) {
+    next(error);
+  }
+};
+export const authResetPassword = async (req, res, next) => {
+  const front_url = process.env.URL_FRONTEND;
+  try {
+    // console.log(req.body);
+    req.body.password = hassPassword(req.body.password);
+    const { otp, password, email } = req.body;
+    // encrypt the password
+
+    // receieve the user data
+    const session = await getSession({ association: email, token: otp });
+    if (session?._id) {
+      const user = await updateUser({ email: association }, { password });
+      if (user?._id) {
+        //send email
+
+        return responseClient({
+          req,
+          res,
+          message: "Your passsword has been updated successfully!",
+        });
+      }
+    }
+    responseClient({
+      req,
+      res,
+      message: "Unable to update password",
+      statusCode: 401,
+    });
   } catch (error) {
     next(error);
   }

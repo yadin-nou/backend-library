@@ -3,6 +3,7 @@ import {
   FNAME_REQ,
   LNAME,
   LNAME_REQ,
+  OTP_REQ,
   PASSWORD_REQ,
   PHONE_REQ,
 } from "./joiConst.js";
@@ -24,6 +25,15 @@ export const newUserDataValidation = (req, res, next) => {
     email: EMAIL_REQ,
     phone: PHONE_REQ,
     password: PASSWORD_REQ,
+  };
+  validateData({ req, res, next, obj });
+};
+
+export const resetPasswordOTPValidation = (req, res, next) => {
+  const obj = {
+    email: EMAIL_REQ,
+    password: PASSWORD_REQ,
+    otp: OTP_REQ,
   };
   validateData({ req, res, next, obj });
 };
