@@ -41,3 +41,29 @@ export const userAccountActivatedNotificationTem = ({ email, name, url }) => {
 
   return obj;
 };
+export const sendUserOTPCodeTemplate = ({ email, name, otp }) => {
+  const obj = {
+    from: `"Local Library" <${process.env.SMTP_USER}>`,
+    to: email,
+    subject: "Reset Password OTP Code",
+    text: `Hello ${name} , your OTP code is below.`,
+    html: `
+      Hello ${name} , <br/>.
+      <p>Your OTP code is below will be expired in 5 minutes. <br/> </p>
+    <p>Please copy it to create a new password.</p>
+            <br/><Strong>
+            ${otp}
+            </Strong>
+            <br/>
+
+            <br/>
+            <br/>
+
+            Regards,
+            </br>
+            Library Administrator
+            `,
+  };
+
+  return obj;
+};

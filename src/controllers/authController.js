@@ -6,6 +6,7 @@ import {
   updateUser,
 } from "../models/userModel.js";
 import {
+  sendUserOTPCodeService,
   userAccountActivatedNotificationEmail,
   userActivationUrlEmail,
 } from "../services/emailService.js";
@@ -13,6 +14,7 @@ import { comparePassword, hassPassword } from "../utils/bcrypt.js";
 import { v4 as uuidv4 } from "uuid";
 import { getJWTS } from "../utils/jwt.js";
 import { generateOTP } from "../utils/randomGenderate.js";
+//import { date } from "joi";
 
 export const inserNewUser = async (req, res, next) => {
   const front_url = process.env.URL_FRONTEND;
@@ -151,19 +153,36 @@ export const activateUser = async (req, res, next) => {
 };
 export const authGenerateOTP = async (req, res, next) => {
   try {
-    console.log(req.body);
+    //console.log(req.body);
     const { email } = req.body;
     //get user by email
     const user = await getUserByEmail(email);
     if (user?.id) {
-      const otp = generateOTP(4);
+      const otp = generateOTP(6);
       const session = await createNewSession({
         token: otp,
         association: email,
+        expire: new Date(Date.now() + 1000 * 60 * 5), // expire in 5 min time
       });
       if (session?._id) {
+        //Send Email
+        const obj = {
+          email: session.association,
+          name: user.fName,
+          otp: session.token,
+        };
+        const sendOTP = await sendUserOTPCodeService(obj);
+        //console.log(sendOTP, "email");
+        if (sendOTP?.status === "success") {
+          const message = "OTP has sent to your email!.";
+          console.log(sendOTP.info.messageId);
+          return responseClient({ req, res, message });
+        } else {
+          const message = "Unable to send Email";
+          const statusCode = 401;
+          return responseClient({ req, res, message, statusCode });
+        }
       }
-      //Send Email
     }
   } catch (error) {
     next(error);
