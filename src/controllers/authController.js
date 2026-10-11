@@ -204,7 +204,7 @@ export const authResetPassword = async (req, res, next) => {
     req.body.password = hassPassword(req.body.password);
     const { otp, password, email } = req.body;
     // encrypt the password
-
+    let message = "Unable to update password";
     // receieve the user data
     const session = await getSession({ association: email, token: otp });
     if (session?._id) {
@@ -224,11 +224,13 @@ export const authResetPassword = async (req, res, next) => {
           message: "Your passsword has been updated successfully!",
         });
       }
+    } else {
+      message = "Invalid OTP";
     }
     responseClient({
       req,
       res,
-      message: "Unable to update password",
+      message,
       statusCode: 401,
     });
   } catch (error) {

@@ -94,7 +94,7 @@ Content-Type: application/json
 
 {
     "email":"nouyadin007@gmail.com",
-    "password":"123"
+    "password":"123456"
 }
 
 ### GET Request new JWT by refreshJWT
@@ -120,7 +120,7 @@ Content-Type: application/json
 
 {
     "email":"nouyadin007@gmail.com",
-    "otp":821087,
+    "otp":500650,
     "password": "123456"
 
  
