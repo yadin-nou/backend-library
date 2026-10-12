@@ -12,7 +12,7 @@ export const userMiddleWare = async (req, res, next) => {
   const { authorization } = req.headers;
   let message = "Unauthorized";
   if (authorization) {
-    // check if valid
+    // check if valid on JWT, not database , return email if valid
     const decode = verifyAccessJWT(authorization);
     if (decode.email) {
       // check if exist in session table
@@ -29,8 +29,16 @@ export const userMiddleWare = async (req, res, next) => {
           req.userInfo = user;
           return next();
         }
+      } else {
+        return responseClient({
+          req,
+          res,
+          message: "accessJWT is not exist in database!",
+          statusCode: 401,
+        });
       }
     }
+
     message =
       decode.includes("jwt expired") || decode.includes("invalid")
         ? decode

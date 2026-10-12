@@ -6,7 +6,7 @@ import { updateUser } from "../models/userModel.js";
 export const createAccesJWT = async (email) => {
   //create
   const jwtAccess = process.env.JWT_ACCESS_SECRET;
-  const token = jwt.sign({ email }, jwtAccess, { expiresIn: "15m" });
+  const token = jwt.sign({ email }, jwtAccess, { expiresIn: "1m" });
   //store
   const obj = {
     token,
