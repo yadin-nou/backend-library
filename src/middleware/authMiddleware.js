@@ -33,7 +33,7 @@ export const userMiddleWare = async (req, res, next) => {
         return responseClient({
           req,
           res,
-          message: "accessJWT is not exist in database!",
+          message: "jwt expired",
           statusCode: 401,
         });
       }
