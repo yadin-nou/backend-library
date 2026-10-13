@@ -80,6 +80,11 @@ export const renewRefreshJWTMiddleWare = async (req, res, next) => {
           payload: token,
         });
       }
+    } else {
+      message =
+        decode.includes("jwt expired") || decode.includes("invalid")
+          ? decode
+          : "Unauthorized";
     }
   }
 
