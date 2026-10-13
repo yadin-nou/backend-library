@@ -97,6 +97,13 @@ Content-Type: application/json
     "password":"123456"
 }
 
+### logout user
+GET {{url}}{{auth}}logout
+Content-Type: application/json
+
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTU0OTA1NywiZXhwIjoxNzkxNTQ5OTU3fQ.5o2MDWTsICd1zpcERD0zuczvthp4mwOa99e3yjv7QXE
+
+
 ### GET Request new JWT by refreshJWT
 GET {{url}}{{auth}}renew-jwt
 authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTU0ODUxOSwiZXhwIjoxNzk0MTQwNTE5fQ.9DNutpHCTiNyTJT-0A0Ei_KJYxDW6b6WLV8b7PoKoVA

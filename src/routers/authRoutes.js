@@ -5,13 +5,17 @@ import {
   authResetPassword,
   inserNewUser,
   loginUser,
+  logOutUser,
 } from "../controllers/authController.js";
 import {
   loginDataValidation,
   newUserDataValidation,
   resetPasswordOTPValidation,
 } from "../middleware/validation/authDataValidation.js";
-import { renewRefreshJWTMiddleWare } from "../middleware/authMiddleware.js";
+import {
+  renewRefreshJWTMiddleWare,
+  userMiddleWare,
+} from "../middleware/authMiddleware.js";
 
 const authRouter = express.Router();
 
@@ -26,5 +30,6 @@ authRouter.post("/activate-user", activateUser);
 authRouter.get("/renew-jwt", renewRefreshJWTMiddleWare);
 authRouter.post("/otp", authGenerateOTP);
 authRouter.post("/reset-pwd", resetPasswordOTPValidation, authResetPassword);
+authRouter.get("/logout", userMiddleWare, logOutUser);
 
 export default authRouter;
