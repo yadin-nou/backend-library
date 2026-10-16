@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const borrowHistorySchema = new mongoose.Schema(
   {
     userId: {
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
     bookId: {
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Book",
     },
@@ -20,27 +20,23 @@ const borrowHistorySchema = new mongoose.Schema(
       type: String,
       default: "inactive",
     },
+
+    isReturned: {
+      type: Boolean,
+      default: false,
+    },
     dueDate: {
       type: Date,
       required: true,
-      default: "user",
     },
-    isReturned: {
-      type: String,
+    returnedDate: {
+      type: Date,
+      required: null,
+    },
+    reviewId: {
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
-      unique: true,
-      index: 1,
-    },
-    phone: {
-      type: String,
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    refreshJWT: {
-      type: String,
+      ref: "review",
     },
   },
   {
@@ -48,4 +44,4 @@ const borrowHistorySchema = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("user", userSchema);
+export default mongoose.model("Borrow", borrowHistorySchema);
