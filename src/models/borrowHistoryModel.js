@@ -1,9 +1,9 @@
-import borrowHistorySchema from "./borrowHistorySchema.js";
+import borrowSchema from "./borrowHistorySchema.js";
 
 //insert new user
 
-export const createNewUser = (userObj) => {
-  return userSchema(userObj).save();
+export const createBorrow = (borrow) => {
+  return borrowSchema.insertMany(borrow);
 };
 
 // export const getUserByEmail = (email) => {

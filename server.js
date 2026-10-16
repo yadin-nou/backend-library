@@ -3,6 +3,7 @@ import userRouter from "./src/routers/userRouter.js";
 import dbConfig from "./src/dbConnection/dbConfig.js";
 import adminRouter from "./src/routers/adminRouter.js";
 import authRouter from "./src/routers/authRoutes.js";
+import borrowRouter from "./src/routers/borrowRoute.js";
 import cors from "cors";
 import morgan from "morgan";
 import { errorHandler } from "./src/middleware/errorMiddleware.js";
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 8000;
 const userRouteLink = "/api/v1/users";
 const adminRouteLink = "/api/v1/admin";
 const authRouterLink = "/api/v1/auth";
+const borrowRouterLink = "/api/v1/borrows";
 //database conneciton
 
 app.use(cors());
@@ -19,6 +21,7 @@ app.use(morgan("tiny"));
 app.use(express.json());
 app.use(userRouteLink, userRouter);
 app.use(adminRouteLink, adminRouter);
+app.use(borrowRouterLink, borrowRouter);
 
 //server status reponse
 app.get("/", (req, res) => {

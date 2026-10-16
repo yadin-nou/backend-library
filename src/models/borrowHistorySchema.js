@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const borrowHistorySchema = new mongoose.Schema(
+const borrowSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -16,9 +16,9 @@ const borrowHistorySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    thumbail: {
+    thumbnail: {
       type: String,
-      default: "inactive",
+      required: true,
     },
 
     isReturned: {
@@ -35,7 +35,6 @@ const borrowHistorySchema = new mongoose.Schema(
     },
     reviewId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: "review",
     },
   },
@@ -44,4 +43,4 @@ const borrowHistorySchema = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("Borrow", borrowHistorySchema);
+export default mongoose.model("Borrow", borrowSchema);

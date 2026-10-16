@@ -3,6 +3,7 @@
 
 @admin=/api/v1/admin/
 @auth=/api/v1/auth/
+@borrow=/api/v1/borrows/
 
 ### GET request to server only, not router
 GET {{url}}
@@ -94,7 +95,7 @@ Content-Type: application/json
 
 {
     "email":"nouyadin007@gmail.com",
-    "password":"123456"
+    "password":"123!Aa"
 }
 
 ### logout user
@@ -117,6 +118,7 @@ authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3Q
 POST {{url}}{{auth}}otp
 Content-Type: application/json
 
+
 {
     "email":"nouyadin007@gmail.com"
  
@@ -134,3 +136,21 @@ Content-Type: application/json
 }
 
  
+ ## Insert a new borrow book
+### POST add borrow
+POST {{url}}{{borrow}}borrows
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MjE2NzUzMCwiZXhwIjoxNzkyMTY4NDMwfQ.reCMtVvue6PRJg1xDFXCiGSg--sOrhlzYKzmGsiCopE
+    
+     [
+        {
+     "bookId":"6ab74a7e0d79faf60f11f78f",
+      "bookTitle": "The Hobbit",
+      "thumbnail": "https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg"
+    },
+     {
+     "bookId":"6ab74a7e0d79faf60f11f78f",
+     "bookTitle": "The Hobbit",
+     "thumbnail": "https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg"
+    }
+]
