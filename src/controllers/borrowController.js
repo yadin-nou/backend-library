@@ -1,10 +1,11 @@
 import { responseClient } from "../middleware/responseClient.js";
-import { updateBooks } from "../models/bookModel.js";
+import { updateBooks, updateManyBooks } from "../models/bookModel.js";
 import { createBorrow } from "../models/borrowHistoryModel.js";
+import { sendUserEmailNotificationBorrowService } from "../services/emailService.js";
 
 export const inserNewBorrow = async (req, res, next) => {
   try {
-    const { _id } = req.userInfo;
+    const { _id, fName, email } = req.userInfo;
     let today = new Date();
     const dueDate = today.setDate(today.getDate() + 15);
     const obj = req.body.map((book) => ({
@@ -15,17 +16,25 @@ export const inserNewBorrow = async (req, res, next) => {
       dueDate,
     }));
     const bookId = obj.map((book) => book.bookId);
+    //console.log(bookId, "bookID");
     const borrow = await createBorrow(obj);
-    if (borrow[0]?._id) {
+    //  console.log(borrow, "Borrow");
+    if (borrow) {
       //update book avilability:false
-      const resBook = await updateBooks(bookId, { availability: false });
-      if (resBook) {
+      const resBook = await updateManyBooks(bookId, { availability: false });
+      //   console.log(resBook, " after update");
+      if (resBook.matchedCount === bookId.length) {
+        sendUserEmailNotificationBorrowService({
+          name: fName,
+          email,
+          book: obj,
+        });
         return responseClient({ req, res, message: "Borrowed successfully!" });
       } else {
         return responseClient({
           req,
           res,
-          message: "Unable to borrow books.",
+          message: "Unable to borrow books,email.",
           statusCode: 401,
         });
       }
@@ -33,7 +42,7 @@ export const inserNewBorrow = async (req, res, next) => {
       return responseClient({
         req,
         res,
-        message: "Unable to borrow books.",
+        message: "Unable to borrow books,borrow.",
         statusCode: 401,
       });
     }
