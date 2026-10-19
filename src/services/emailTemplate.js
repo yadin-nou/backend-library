@@ -120,12 +120,12 @@ export const sendUserEmailNotificationBorrowTemplate = ({
     from: `"Local Library" <${process.env.SMTP_USER}>`,
     to: email,
     subject: "Borrow Book",
-    text: `Hello ${name} , You have successfully borrowed ${book.length} books.`,
+    text: `Hello ${name} , You have successfully borrowed ${book.length} book (s).`,
     html: `
       Hello ${name} , <br/>
       <p>You have successfully borrowed ${book.length} books. <br/> </p>
     <p>Please see borrow book details below:</p>
-        <p>You must return the book before or on the Return Date:</p>
+        <p>You must return all books before or on the Return Date:</p>
            <table>
             <thead>
               <tr>
