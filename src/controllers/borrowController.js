@@ -1,4 +1,5 @@
 import { responseClient } from "../middleware/responseClient.js";
+import { updateBooks } from "../models/bookModel.js";
 import { createBorrow } from "../models/borrowHistoryModel.js";
 
 export const inserNewBorrow = async (req, res, next) => {
@@ -13,10 +14,21 @@ export const inserNewBorrow = async (req, res, next) => {
       thumbnail: book.thumbnail,
       dueDate,
     }));
+    const bookId = obj.map((book) => book.bookId);
     const borrow = await createBorrow(obj);
-
     if (borrow[0]?._id) {
-      return responseClient({ req, res, message: "Borrowed successfully!" });
+      //update book avilability:false
+      const resBook = await updateBooks(bookId, { availability: false });
+      if (resBook) {
+        return responseClient({ req, res, message: "Borrowed successfully!" });
+      } else {
+        return responseClient({
+          req,
+          res,
+          message: "Unable to borrow books.",
+          statusCode: 401,
+        });
+      }
     } else {
       return responseClient({
         req,

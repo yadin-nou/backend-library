@@ -17,3 +17,9 @@ export const updateBooks = (id, obj) => {
     { $set: obj }, // Fields to update
   );
 };
+export const updateManyBooks = (ids, obj) => {
+  return bookSchema.updateMany(
+    { _id: { $in: ids } }, // Filter by ID
+    { $set: obj }, // Fields to update
+  );
+};
