@@ -53,6 +53,21 @@ export const userMiddleWare = async (req, res, next) => {
   });
 };
 
+export const adminAuthMiddleware = (req, res, next) => {
+  try {
+    req.userInfo.role === "admin"
+      ? next()
+      : responseClient({
+          req,
+          res,
+          message: "You don't have access to this resources",
+          statusCode: 403,
+        });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const renewRefreshJWTMiddleWare = async (req, res, next) => {
   // get accessJWT
   const { authorization } = req.headers;

@@ -31,7 +31,7 @@ const borrowSchema = new mongoose.Schema(
     },
     returnedDate: {
       type: Date,
-      required: null,
+      default: null,
     },
     reviewId: {
       type: mongoose.Schema.Types.ObjectId,

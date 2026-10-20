@@ -6,16 +6,8 @@ export const createBorrow = (borrow) => {
   return borrowSchema.insertMany(borrow);
 };
 
-// export const getUserByEmail = (email) => {
-//   return userSchema.findOne({ email });
-// };
-// export const getUserOne = (filter) => {
-//   return userSchema.findOne(filter);
-// };
-
-// export const updateUser = (filter, update) => {
-//   return userSchema.findOneAndUpdate(filter, update, {
-//     returnDocument: "after",
-//     runValidators: true,
-//   });
-// };
+//use filter to get borrows for specific user
+// if @filter is underfinened, it will return entire records
+export const getBorrows = (filter) => {
+  return borrowSchema.find(filter);
+};

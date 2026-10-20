@@ -1,6 +1,6 @@
 import { responseClient } from "../middleware/responseClient.js";
 import { updateBooks, updateManyBooks } from "../models/bookModel.js";
-import { createBorrow } from "../models/borrowHistoryModel.js";
+import { createBorrow, getBorrows } from "../models/borrowHistoryModel.js";
 import { sendUserEmailNotificationBorrowService } from "../services/emailService.js";
 
 export const inserNewBorrow = async (req, res, next) => {
@@ -43,6 +43,35 @@ export const inserNewBorrow = async (req, res, next) => {
         req,
         res,
         message: "Unable to borrow books,borrow.",
+        statusCode: 401,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAllBorrowsController = async (req, res, next) => {
+  try {
+    const { _id, role } = req.userInfo;
+    const isAdmin = role === "admin";
+
+    const borrows = isAdmin
+      ? await getBorrows()
+      : await getBorrows({ userId: _id });
+    //  console.log(borrow, "Borrow");
+    if (borrows) {
+      responseClient({
+        req,
+        res,
+        message: "Here is the borrow lists",
+        payload: borrows,
+      });
+    } else {
+      responseClient({
+        req,
+        res,
+        message: "Borrow list errors!",
         statusCode: 401,
       });
     }
