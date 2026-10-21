@@ -53,9 +53,11 @@ export const inserNewBorrow = async (req, res, next) => {
 
 export const getAllBorrowsController = async (req, res, next) => {
   try {
-    const { _id, role } = req.userInfo;
-    const isAdmin = role === "admin";
+    const { _id } = req.userInfo;
+    const path = req.path;
+    const isAdmin = path === "/admin";
 
+    console.log(path);
     const borrows = isAdmin
       ? await getBorrows()
       : await getBorrows({ userId: _id });
