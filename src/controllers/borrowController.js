@@ -57,7 +57,7 @@ export const getAllBorrowsController = async (req, res, next) => {
     const path = req.path;
     const isAdmin = path === "/admin";
 
-    console.log(path);
+    //console.log(path);
     const borrows = isAdmin
       ? await getBorrows()
       : await getBorrows({ userId: _id });
