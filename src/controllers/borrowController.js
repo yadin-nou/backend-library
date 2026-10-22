@@ -21,7 +21,10 @@ export const inserNewBorrow = async (req, res, next) => {
     //  console.log(borrow, "Borrow");
     if (borrow) {
       //update book avilability:false
-      const resBook = await updateManyBooks(bookId, { availability: false });
+      const resBook = await updateManyBooks(bookId, {
+        availability: false,
+        expectAvailabilityDate: dueDate,
+      });
       //   console.log(resBook, " after update");
       if (resBook.matchedCount === bookId.length) {
         sendUserEmailNotificationBorrowService({
