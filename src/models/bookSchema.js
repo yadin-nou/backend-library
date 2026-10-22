@@ -32,7 +32,7 @@ const bookSchema = new mongoose.Schema(
     },
     expectAvailabilityDate: {
       type: Date,
-      default: null,
+      default: "",
     },
     averageRating: {
       type: Number,
