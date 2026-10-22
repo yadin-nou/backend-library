@@ -6,6 +6,7 @@ import {
 import {
   getAllBorrowsController,
   inserNewBorrow,
+  returnBookController,
 } from "../controllers/borrowController.js";
 
 const borrowRouter = express.Router();
@@ -21,5 +22,6 @@ borrowRouter.get(
 );
 //return all borrows for user request only
 borrowRouter.get("/user", userMiddleWare, getAllBorrowsController);
+borrowRouter.patch("/", userMiddleWare, returnBookController);
 
 export default borrowRouter;

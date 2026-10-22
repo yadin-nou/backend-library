@@ -1,6 +1,10 @@
 import { responseClient } from "../middleware/responseClient.js";
 import { updateBooks, updateManyBooks } from "../models/bookModel.js";
-import { createBorrow, getBorrows } from "../models/borrowHistoryModel.js";
+import {
+  createBorrow,
+  getBorrows,
+  updateBorrow,
+} from "../models/borrowHistoryModel.js";
 import { sendUserEmailNotificationBorrowService } from "../services/emailService.js";
 
 export const inserNewBorrow = async (req, res, next) => {
@@ -77,6 +81,52 @@ export const getAllBorrowsController = async (req, res, next) => {
         req,
         res,
         message: "Borrow list errors!",
+        statusCode: 401,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const returnBookController = async (req, res, next) => {
+  try {
+    const { _id } = req.userInfo;
+    const filters = {
+      userId: _id,
+      _id: req.body._id,
+    };
+    const update = {
+      isReturned: true,
+      returnedDate: Date.now(),
+    };
+    const updated_borrow = await updateBorrow(filters, update);
+
+    if (updated_borrow?._id) {
+      const update_book = await updateBooks(updated_borrow.bookId, {
+        availability: true,
+        expectAvailabilityDate: Date.now(),
+      });
+      console.log(update_book);
+      if (update_book) {
+        return responseClient({
+          req,
+          res,
+          message: "Returned book successfully!",
+        });
+      } else {
+        return responseClient({
+          req,
+          res,
+          message: "Unable to return books.",
+          statusCode: 400,
+        });
+      }
+    } else {
+      return responseClient({
+        req,
+        res,
+        message: "Unable to return books.",
         statusCode: 401,
       });
     }

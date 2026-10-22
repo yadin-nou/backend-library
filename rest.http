@@ -154,3 +154,14 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3Q
      "thumbnail": "https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg"
     }
 ]
+
+## Return book
+### POST return
+PATCH {{url}}{{borrow}}
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MjY3OTM3NCwiZXhwIjoxNzkyNjgwMjc0fQ.FdWG6SX0Y-WaSz8wzdNz0qu_1si4_4L8Eq__gwangXI
+    
+    {
+     "_id":"6ad62bf80b8fb482d17715a5"
+    }
+     
