@@ -100,6 +100,7 @@ export const returnBookController = async (req, res, next) => {
       isReturned: true,
       returnedDate: Date.now(),
     };
+    // console.log(filters, update);
     const updated_borrow = await updateBorrow(filters, update);
 
     if (updated_borrow?._id) {
@@ -107,8 +108,9 @@ export const returnBookController = async (req, res, next) => {
         availability: true,
         expectAvailabilityDate: Date.now(),
       });
-      console.log(update_book);
+      // console.log(update_book);
       if (update_book) {
+        //send email to user
         return responseClient({
           req,
           res,
