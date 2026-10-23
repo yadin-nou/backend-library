@@ -5,7 +5,10 @@ import {
   getBorrows,
   updateBorrow,
 } from "../models/borrowHistoryModel.js";
-import { sendUserEmailNotificationBorrowService } from "../services/emailService.js";
+import {
+  sendUserEmailNotificationBorrowService,
+  sendUserEmailNotificationReturnService,
+} from "../services/emailService.js";
 
 export const inserNewBorrow = async (req, res, next) => {
   try {
@@ -91,7 +94,7 @@ export const getAllBorrowsController = async (req, res, next) => {
 
 export const returnBookController = async (req, res, next) => {
   try {
-    const { _id } = req.userInfo;
+    const { _id, email, fName } = req.userInfo;
     const filters = {
       userId: _id,
       _id: req.body._id,
@@ -111,6 +114,19 @@ export const returnBookController = async (req, res, next) => {
       // console.log(update_book);
       if (update_book) {
         //send email to user
+        const obj = [
+          {
+            thumbnail: update_book.imgURL,
+            bookTitle: update_book.title,
+            dueDate: updated_borrow.dueDate,
+            returnedDate: Date.now(),
+          },
+        ];
+        sendUserEmailNotificationReturnService({
+          email,
+          name: fName,
+          book: obj,
+        });
         return responseClient({
           req,
           res,

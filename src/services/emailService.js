@@ -1,6 +1,7 @@
 import { emailTransporter } from "./transport.js";
 import {
   sendUserEmailNotificationBorrowTemplate,
+  sendUserEmailNotificationReturnTemplate,
   sendUserEmailNotificationUpdatePasswordTempalte,
   sendUserOTPCodeTemplate,
   userAccountActivatedNotificationTem,
@@ -73,6 +74,22 @@ export const sendUserEmailNotificationBorrowService = async (obj) => {
 
     const info = await transporter.sendMail(
       sendUserEmailNotificationBorrowTemplate(obj),
+    );
+
+    //console.log(info);
+    return { status: "success", info };
+  } catch (error) {
+    console.error("Failed to update password:", error);
+    return { status: "error", message: error.message };
+  }
+};
+
+export const sendUserEmailNotificationReturnService = async (obj) => {
+  try {
+    const transporter = emailTransporter(); // ← call it as a function here
+
+    const info = await transporter.sendMail(
+      sendUserEmailNotificationReturnTemplate(obj),
     );
 
     //console.log(info);
