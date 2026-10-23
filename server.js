@@ -4,6 +4,7 @@ import dbConfig from "./src/dbConnection/dbConfig.js";
 import adminRouter from "./src/routers/adminRouter.js";
 import authRouter from "./src/routers/authRoutes.js";
 import borrowRouter from "./src/routers/borrowRoute.js";
+import reviewRouter from "./src/routers/reviewRoute.js";
 import cors from "cors";
 import morgan from "morgan";
 import { errorHandler } from "./src/middleware/errorMiddleware.js";
@@ -14,6 +15,7 @@ const userRouteLink = "/api/v1/users";
 const adminRouteLink = "/api/v1/admin";
 const authRouterLink = "/api/v1/auth";
 const borrowRouterLink = "/api/v1/borrows";
+const reviewRouterLink = "/api/v1/reviews";
 //database conneciton
 
 app.use(cors());
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use(userRouteLink, userRouter);
 app.use(adminRouteLink, adminRouter);
 app.use(borrowRouterLink, borrowRouter);
+app.use(reviewRouterLink, reviewRouter);
 
 //server status reponse
 app.get("/", (req, res) => {

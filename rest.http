@@ -4,6 +4,7 @@
 @admin=/api/v1/admin/
 @auth=/api/v1/auth/
 @borrow=/api/v1/borrows/
+@review=/api/v1/reviews/
 
 ### GET request to server only, not router
 GET {{url}}
@@ -94,7 +95,7 @@ POST {{url}}{{auth}}login
 Content-Type: application/json
 
 {
-    "email":"nouyadin007@gmail.com",
+    "email":"nouyadin@hotmail.com",
     "password":"123!Aa"
 }
 
@@ -163,5 +164,19 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3Q
     
     {
      "_id":"6ad62bf80b8fb482d17715a5"
+    }
+     
+## Review Book
+### Post Rview
+POST {{url}}{{review}}
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluQGhvdG1haWwuY29tIiwiaWF0IjoxNzkyNzY1MDI1LCJleHAiOjE3OTI3NjU5MjV9.ks3bktPAzf8YqdC7AuD2kj37iZfGAz1UO4ahNx4r9g0
+   
+    {
+   "bookId":"6ab74a7e0d79faf60f11f798",
+      "title":"Hello",
+       "reviewMessage":"Nice book!",
+    "rating":4,
+    "borrowId":"6adb5ef09231c6867fe34a42"
     }
      

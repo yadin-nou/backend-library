@@ -23,3 +23,11 @@ export const TOKEN_REQ = TOKEN.required();
 
 export const OTP = Joi.number().min(10000).max(999999);
 export const OTP_REQ = OTP.required();
+
+export const SHORT_STR = Joi.string().min(1).max(100);
+export const SHORT_STR_REQ = SHORT_STR.required();
+
+export const LONG_STR = Joi.string().min(1).max(5000);
+export const LONG_STR_REQ = LONG_STR.required();
+
+export const RATING = Joi.number().integer().min(1).max(5);
