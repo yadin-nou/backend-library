@@ -95,7 +95,7 @@ POST {{url}}{{auth}}login
 Content-Type: application/json
 
 {
-    "email":"nouyadin@hotmail.com",
+    "email":"nouyadin007@gmail.com",
     "password":"123!Aa"
 }
 
@@ -180,3 +180,12 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluQGhvd
     "borrowId":"6adb5ef09231c6867fe34a42"
     }
      
+### Get Rviewe by admin
+GET {{url}}{{review}}admin
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MzEwOTkxNCwiZXhwIjoxNzkzMTEwODE0fQ.LGMhgikxZCl8KwXg448RKXHON9wWmz5gPxySBnd-IfU
+
+    
+### Get Rviewe public
+GET {{url}}{{review}}
+Content-Type: application/json

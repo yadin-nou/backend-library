@@ -36,6 +36,7 @@ const borrowSchema = new mongoose.Schema(
     reviewId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "review",
+      default: null,
     },
   },
   {

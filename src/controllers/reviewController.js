@@ -1,5 +1,6 @@
 import { responseClient } from "../middleware/responseClient.js";
-import { createReview } from "../models/reviewModel.js";
+import { updateBorrow } from "../models/borrowHistoryModel.js";
+import { createReview, getReviews } from "../models/reviewModel.js";
 
 export const inserReviewController = async (req, res, next) => {
   try {
@@ -15,20 +16,53 @@ export const inserReviewController = async (req, res, next) => {
       // borrowId,
     };
     const result = await createReview(reviewObj);
-    if (result) {
-      return responseClient({
-        req,
-        res,
-        message: "Your review has been added.",
-      });
-    } else {
-      return responseClient({
-        req,
-        res,
-        message: "Unable to create review.",
-        statusCode: 401,
-      });
+    if (result?._id) {
+      //update borrow table with reviewID which is result._id
+      const reviewId = result._id;
+      const borrowId = reviewObj.borrowId;
+      const updateResult = await updateBorrow(
+        { _id: borrowId },
+        {
+          reviewId,
+        },
+      );
+      if (updateResult?._id) {
+        return responseClient({
+          req,
+          res,
+          message: "Your review has been added.",
+        });
+      }
     }
+
+    return responseClient({
+      req,
+      res,
+      message: "Unable to create review.Please contact administrator.",
+      statusCode: 401,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getReviewController = async (req, res, next) => {
+  try {
+    const filter = {};
+    //is admin requesting or public
+    if (req?.userInfo?.role !== "admin") {
+      //filter only approved review to show to public
+      filter.isApproved = true;
+    }
+    const payload = await getReviews(filter);
+    if (payload) {
+    }
+    return responseClient({
+      req,
+      res,
+      message: "success get all review.",
+      payload,
+    });
   } catch (error) {
     next(error);
   }

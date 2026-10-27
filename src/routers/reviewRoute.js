@@ -1,6 +1,9 @@
 import express from "express";
 import { userMiddleWare } from "../middleware/authMiddleware.js";
-import { inserReviewController } from "../controllers/reviewController.js";
+import {
+  getReviewController,
+  inserReviewController,
+} from "../controllers/reviewController.js";
 import { reviewDataValidation } from "../middleware/validation/reviewValidation.js";
 
 const reviewRouter = express.Router();
@@ -13,14 +16,10 @@ reviewRouter.post(
 );
 //return all borrows for admin request only
 //check userMiddleware first, then check is admin or not
-// borrowRouter.get(
-//   "/admin",
-//   userMiddleWare,
-//   adminAuthMiddleware,
-//   getAllBorrowsController,
-// );
+reviewRouter.get("/admin", userMiddleWare, getReviewController);
 // //return all borrows for user request only
-// borrowRouter.get("/user", userMiddleWare, getAllBorrowsController);
+reviewRouter.get("/", getReviewController);
+
 // borrowRouter.patch("/", userMiddleWare, returnBookController);
 
 export default reviewRouter;
