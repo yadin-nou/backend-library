@@ -56,13 +56,13 @@ export const getReviewController = async (req, res, next) => {
     }
     const payload = await getReviews(filter);
     if (payload) {
+      return responseClient({
+        req,
+        res,
+        message: "success get all review.",
+        payload,
+      });
     }
-    return responseClient({
-      req,
-      res,
-      message: "success get all review.",
-      payload,
-    });
   } catch (error) {
     next(error);
   }
