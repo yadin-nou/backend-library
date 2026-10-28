@@ -183,7 +183,7 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluQGhvd
 ### Get Rviewe by admin
 GET {{url}}{{review}}admin
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MzEwOTkxNCwiZXhwIjoxNzkzMTEwODE0fQ.LGMhgikxZCl8KwXg448RKXHON9wWmz5gPxySBnd-IfU
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MzExMzk4MywiZXhwIjoxNzkzMTE0ODgzfQ.nwy0O72OUukl5irwb5W3ug5BlFZjpk889KiCMgEYNSk
 
     
 ### Get Rviewe public
