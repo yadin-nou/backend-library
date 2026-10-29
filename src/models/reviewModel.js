@@ -15,6 +15,7 @@ export const deleteReview = (filter) => {
 // if @filter is underfinened, it will return entire records
 export const getReviews = (filter) => {
   // return reviewSchema.find(filter).sort({ updateAt: -1 }); //sort by the latest review
+  //join table book with path bookId foreight key in review table
   return reviewSchema
     .find(filter)
     .populate({

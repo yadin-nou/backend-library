@@ -189,3 +189,13 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3Q
 ### Get Rviewe public
 GET {{url}}{{review}}
 Content-Type: application/json
+
+
+### delete review
+DELETE {{url}}{{review}}
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MzI3NjgxMSwiZXhwIjoxNzkzMjc3NzExfQ.FxYw9QlkKqPLOH0sDspzfZH2Yyw7_sMN5tDlK6v-tjc
+
+    {
+     "_id":"6ae0a4dbac94a01697cae7f3"
+    }

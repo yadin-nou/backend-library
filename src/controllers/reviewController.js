@@ -1,6 +1,10 @@
 import { responseClient } from "../middleware/responseClient.js";
 import { updateBorrow } from "../models/borrowHistoryModel.js";
-import { createReview, getReviews } from "../models/reviewModel.js";
+import {
+  createReview,
+  deleteReview,
+  getReviews,
+} from "../models/reviewModel.js";
 
 export const inserReviewController = async (req, res, next) => {
   try {
@@ -61,6 +65,47 @@ export const getReviewController = async (req, res, next) => {
         res,
         message: "success get all review.",
         payload,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteReviewController = async (req, res, next) => {
+  try {
+    const { _id } = req.body;
+    // console.log(_id);
+    const result = await deleteReview({ _id });
+    if (result?._id) {
+      const borrowId = result.borrowId;
+      const updateBow = await updateBorrow(
+        { _id: borrowId },
+        { reviewId: null },
+      );
+      if (updateBow?._id) {
+        return responseClient({
+          req,
+          res,
+          result,
+          message: "Delete review Succesfully.",
+        });
+      } else {
+        responseClient({
+          req,
+          res,
+          result,
+          message: "Something went wrong with borrow!",
+          statusCode: 401,
+        });
+      }
+    } else {
+      responseClient({
+        req,
+        res,
+        result,
+        message: "Something went wrong!",
+        statusCode: 400,
       });
     }
   } catch (error) {
