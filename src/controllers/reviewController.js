@@ -4,6 +4,7 @@ import {
   createReview,
   deleteReview,
   getReviews,
+  updateReview,
 } from "../models/reviewModel.js";
 
 export const inserReviewController = async (req, res, next) => {
@@ -74,29 +75,39 @@ export const getReviewController = async (req, res, next) => {
 
 export const deleteReviewController = async (req, res, next) => {
   try {
-    const { _id } = req.body;
-    // console.log(_id);
-    const result = await deleteReview({ _id });
-    if (result?._id) {
-      const borrowId = result.borrowId;
-      const updateBow = await updateBorrow(
-        { _id: borrowId },
-        { reviewId: null },
-      );
-      if (updateBow?._id) {
-        return responseClient({
-          req,
-          res,
-          result,
-          message: "Delete review Succesfully.",
-        });
+    if (req?.userInfo?.role === "admin") {
+      const { _id } = req.body;
+      // console.log(_id);
+      const result = await deleteReview({ _id });
+      if (result?._id) {
+        const borrowId = result.borrowId;
+        const updateBow = await updateBorrow(
+          { _id: borrowId },
+          { reviewId: null },
+        );
+        if (updateBow?._id) {
+          return responseClient({
+            req,
+            res,
+            result,
+            message: "Delete review Succesfully.",
+          });
+        } else {
+          responseClient({
+            req,
+            res,
+            result,
+            message: "Something went wrong with borrow!",
+            statusCode: 401,
+          });
+        }
       } else {
         responseClient({
           req,
           res,
           result,
-          message: "Something went wrong with borrow!",
-          statusCode: 401,
+          message: "Something went wrong!",
+          statusCode: 400,
         });
       }
     } else {
@@ -107,6 +118,36 @@ export const deleteReviewController = async (req, res, next) => {
         message: "Something went wrong!",
         statusCode: 400,
       });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateReviewApproveController = async (req, res, next) => {
+  try {
+    if (req?.userInfo?.role === "admin") {
+      const { _id, isApproved } = req.body;
+      const result = await updateReview({ _id }, { isApproved });
+      if (result?._id) {
+        const message = isApproved
+          ? "Review is approved"
+          : "Review is set to NOT appoved!";
+        return responseClient({
+          req,
+          res,
+          result,
+          message,
+        });
+      } else {
+        responseClient({
+          req,
+          res,
+          result,
+          message: "Review is not Aprroved",
+          statusCode: 400,
+        });
+      }
     }
   } catch (error) {
     next(error);

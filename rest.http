@@ -192,10 +192,20 @@ Content-Type: application/json
 
 
 ### delete review
-DELETE {{url}}{{review}}
+DELETE {{url}}{{review}}admin
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MzI3NjgxMSwiZXhwIjoxNzkzMjc3NzExfQ.FxYw9QlkKqPLOH0sDspzfZH2Yyw7_sMN5tDlK6v-tjc
 
     {
      "_id":"6ae0a4dbac94a01697cae7f3"
     }
+
+### update review
+PATCH {{url}}{{review}}admin
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MzI4MjA0MywiZXhwIjoxNzkzMjgyOTQzfQ.YFMtZndUixE8umum1UBMCaOIDvLwW5YHgUVgMEIoWYY
+    
+    {
+     "_id":"6ae34b6273f2c67f6bade455",
+     "isApproved":false
+    }    
