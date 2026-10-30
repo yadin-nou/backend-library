@@ -1,4 +1,6 @@
 import reviewSchema from "./reviewSchema.js";
+import userSchema from "./userSchema.js";
+import bookSchema from "./bookSchema.js";
 
 export const createReview = (revObj) => {
   return reviewSchema(revObj).save();
@@ -20,7 +22,13 @@ export const getReviews = (filter) => {
     .find(filter)
     .populate({
       path: "bookId",
+      model: bookSchema,
       select: "title imgURL",
+    })
+    .populate({
+      path: "userId",
+      model: userSchema,
+      select: "fName",
     })
     .sort({ updatedAt: -1 });
 };
