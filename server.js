@@ -1,7 +1,8 @@
 import express from "express";
 import userRouter from "./src/routers/userRouter.js";
 import dbConfig from "./src/dbConnection/dbConfig.js";
-import adminRouter from "./src/routers/adminRouter.js";
+// import adminRouter from "./src/routers/adminRouter.js";
+import bookRouter from "./src/routers/bookRouter.js";
 import authRouter from "./src/routers/authRoutes.js";
 import borrowRouter from "./src/routers/borrowRoute.js";
 import reviewRouter from "./src/routers/reviewRoute.js";
@@ -12,7 +13,7 @@ import { responseClient } from "./src/middleware/responseClient.js";
 const app = express();
 const PORT = process.env.PORT || 8000;
 const userRouteLink = "/api/v1/users";
-const adminRouteLink = "/api/v1/admin";
+const bookRouteLink = "/api/v1/book";
 const authRouterLink = "/api/v1/auth";
 const borrowRouterLink = "/api/v1/borrows";
 const reviewRouterLink = "/api/v1/reviews";
@@ -22,7 +23,7 @@ app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(userRouteLink, userRouter);
-app.use(adminRouteLink, adminRouter);
+app.use(bookRouteLink, bookRouter);
 app.use(borrowRouterLink, borrowRouter);
 app.use(reviewRouterLink, reviewRouter);
 
