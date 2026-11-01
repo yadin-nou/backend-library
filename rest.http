@@ -1,7 +1,7 @@
 @url=http://localhost:8000
 @link=/api/v1/users/
 
-@admin=/api/v1/admin/
+@admin=/api/v1/book/
 @auth=/api/v1/auth/
 @borrow=/api/v1/borrows/
 @review=/api/v1/reviews/
@@ -14,6 +14,7 @@ GET {{url}}
 ### POST add book
 POST {{url}}{{admin}}addbook
 Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MzUwNTAyNiwiZXhwIjoxNzkzNTA1OTI2fQ.Vh8iaP8RNS1lOqnHCtWYD2Uf0anU8utWXYzcsZoFlwA
 
 [
 {
@@ -23,17 +24,10 @@ Content-Type: application/json
       "isbn": "9780547928227",
       "genre": "Fantasy",
       "availability": true,
-      "averageRating": 4.7
-    },
-    {
-      "title": "1984",
-      "author": "George Orwell",
-      "imgURL": "https://covers.openlibrary.org/b/isbn/9780451524935-L.jpg",
-      "isbn": "9780451524935",
-      "genre": "Dystopian",
-      "availability": false,
-      "averageRating": 4.6
+      "averageRating": 4.7,
+      "description":"hello"
     }
+    
 ]
 
 ### GET data from all book
