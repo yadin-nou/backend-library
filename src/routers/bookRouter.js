@@ -11,48 +11,7 @@ import {
   adminAuthMiddleware,
   userMiddleWare,
 } from "../middleware/authMiddleware.js";
-
-//multer setup
-import multer from "multer";
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/images");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(
-      null,
-      uniqueSuffix +
-        "-" +
-        file.originalname +
-        "." +
-        file.mimetype.split("/")[1],
-    );
-  },
-});
-
-//filter to allow images only
-import path from "path";
-const fileFilter = (req, file, cb) => {
-  const allowedFileTypes = /jpeg|jpg|png|jif|webp/;
-  const extName = path.extname(file.originalname).toLowerCase();
-  const isAllowedExt = allowedFileTypes.test(extName);
-  const mimetype = allowedFileTypes.test(file.mimetype);
-  if (isAllowedExt && mimetype) {
-    cb(null, true);
-  } else {
-    cb(new Error("Only jpeg|jpg|png|jif|webp are allowed"), false);
-  }
-};
-
-const upload = multer({
-  storage: storage,
-  fileFilter,
-  limits: { fileSize: 2 * 1024 * 1024 }, //2 MB size
-});
-//const upload = multer({ dest: "uploads/" });
-//end multer setup
+import { upload } from "../utils/multer.js";
 
 bookRouter.post(
   "/addbook",
