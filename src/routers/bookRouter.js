@@ -46,7 +46,11 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const upload = multer({ storage: storage, fileFilter });
+const upload = multer({
+  storage: storage,
+  fileFilter,
+  limits: { fileSize: 2 * 1024 * 1024 }, //2 MB size
+});
 //const upload = multer({ dest: "uploads/" });
 //end multer setup
 
