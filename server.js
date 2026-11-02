@@ -22,6 +22,7 @@ const reviewRouterLink = "/api/v1/reviews";
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use(express.static("public")); //tell the server want to public folder show as public
 app.use(userRouteLink, userRouter);
 app.use(bookRouteLink, bookRouter);
 app.use(borrowRouterLink, borrowRouter);
