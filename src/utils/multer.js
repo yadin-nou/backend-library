@@ -3,7 +3,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 const __dirname = path.resolve();
-const filePath = path.join(__dirname, "public/images");
+const filePath = "public/images";
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     //check if director exist, if not create one

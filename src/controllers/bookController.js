@@ -7,6 +7,10 @@ import {
 
 export const addBookController = async (req, res, next) => {
   try {
+    //console.log(req.file);
+    //console.log(req.files);
+    const { path } = req.file;
+    req.body.imgURL = path;
     const result = await addBook(req.body);
     res.json({
       status: "success",

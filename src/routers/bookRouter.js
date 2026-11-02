@@ -17,8 +17,8 @@ bookRouter.post(
   "/addbook",
   userMiddleWare,
   adminAuthMiddleware,
-  // upload.single("image"), //one single file only
-  upload.array("image", 2),
+  upload.single("image"), //one single file only
+  //upload.array("image", 2),
   addBookController,
 );
 
