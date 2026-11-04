@@ -10,7 +10,8 @@ import { responseClient } from "./responseClient.js";
 export const userMiddleWare = async (req, res, next) => {
   // get accessJWT
   const { authorization } = req.headers;
-  let message = "Unauthorized";
+  // console.log(authorization);
+  let message = "Unauthorized user";
   if (authorization) {
     // check if valid on JWT, not database , return email if valid
     const decode = verifyAccessJWT(authorization);
@@ -42,7 +43,7 @@ export const userMiddleWare = async (req, res, next) => {
     message =
       decode.includes("jwt expired") || decode.includes("invalid")
         ? decode
-        : "Unauthorized";
+        : "Unauthorized user";
   }
 
   responseClient({
@@ -72,7 +73,7 @@ export const renewRefreshJWTMiddleWare = async (req, res, next) => {
   // get accessJWT
   const { authorization } = req.headers;
 
-  let message = "Unauthorized";
+  let message = "Unauthorized token";
   if (authorization) {
     // check if valid
     const decode = verifyRefreshJWT(authorization);
@@ -99,7 +100,7 @@ export const renewRefreshJWTMiddleWare = async (req, res, next) => {
       message =
         decode.includes("jwt expired") || decode.includes("invalid")
           ? decode
-          : "Unauthorized";
+          : "Unauthorized token";
     }
   }
 
