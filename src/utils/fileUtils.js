@@ -1,7 +1,7 @@
 import { unlink } from "fs";
 import { resolve } from "path";
 
-const deleteFile = (filePath) => {
+export const deleteFile = (filePath) => {
   try {
     unlink(resolve(filePath), () => {
       console.log(filePath, "has been deleted");
@@ -11,7 +11,7 @@ const deleteFile = (filePath) => {
   }
 };
 //check single file or muiltiple files when fail to add book.
-const checkDeleteFiles = (req) => {
+export const checkDeleteFiles = (req) => {
   if (req.file) {
     deleteFile(req.file.path);
     return;

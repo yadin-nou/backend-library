@@ -8,7 +8,8 @@ export const getAllBooks = (filter = {}) => {
   return bookSchema.find(filter);
 };
 export const deleteBooks = (_ids) => {
-  return bookSchema.deleteMany({ _id: { $in: _ids } });
+  //return bookSchema.deleteMany({ _id: { $in: _ids } });
+  return bookSchema.findByIdAndDelete(_ids);
 };
 
 export const updateBooks = (id, obj) => {

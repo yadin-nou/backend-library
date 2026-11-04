@@ -4,6 +4,7 @@ import {
   getAllBooks,
   updateBooks,
 } from "../models/bookModel.js";
+import { deleteFile } from "../utils/fileUtils.js";
 
 export const addBookController = async (req, res, next) => {
   try {
@@ -44,16 +45,21 @@ export const deleteBookController = async (req, res, next) => {
     //const { _id } = req.userInfo;
     //console.log(req.body);
     const result = await deleteBooks(req.body);
-    result
-      ? res.json({
-          data: result,
-          status: "success",
-          message: "Delete successfuly",
-        })
-      : res.json({
-          status: "error",
-          message: error.message,
-        });
+
+    if (result?._id) {
+      deleteFile(result?.imgURL);
+      console.log(result);
+      res.json({
+        data: result,
+        status: "success",
+        message: "Delete successfuly",
+      });
+    } else {
+      res.json({
+        status: "error",
+        message: error.message,
+      });
+    }
   } catch (error) {
     next(error);
   }
