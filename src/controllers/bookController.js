@@ -68,6 +68,19 @@ export const deleteBookController = async (req, res, next) => {
 export const updateBookController = async (req, res, next) => {
   try {
     // console.log(req.body);
+    // const { path } = req.files;
+    //console.log(req.image.file);
+
+    // console.log(req.files);
+    req.body.imageList = [req.body.imgURL, ...req.files.map((f) => f.path)];
+    req.body.expectAvailabilityDate =
+      req.body.expectAvailabilityDate === "null"
+        ? null
+        : req.body.expectAvailabilityDate;
+    req.body.availability =
+      req.body.availability === "true" ? true : req.body.availability;
+    //return;
+    // req.body.imgURL = path;
     const updateResult = await updateBooks(req.body._id, req.body);
     updateResult
       ? res.json({

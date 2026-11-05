@@ -17,12 +17,18 @@ bookRouter.post(
   "/addbook",
   userMiddleWare,
   adminAuthMiddleware,
-  //upload.single("image"), //one single file only
-  upload.array("image", 2),
+  upload.single("image"), //one single file only
+  //upload.array("image", 2),
   addBookController,
 );
 
 bookRouter.get("/book", getAllBooksController);
 bookRouter.delete("/", deleteBookController);
-bookRouter.patch("/", updateBookController);
+bookRouter.patch(
+  "/",
+  userMiddleWare,
+  adminAuthMiddleware,
+  upload.array("image", 2),
+  updateBookController,
+);
 export default bookRouter;
