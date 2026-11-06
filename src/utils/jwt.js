@@ -11,7 +11,7 @@ export const createAccesJWT = async (email) => {
   const obj = {
     token,
     association: email,
-    expire: new Date(Date.now() + 15 * 60 * 1000), //15 minutes
+    expire: new Date(Date.now() + 45 * 60 * 1000), //15 minutes
   };
   const newSesssions = await createNewSession(obj);
   return newSesssions?._id ? token : null;

@@ -4,7 +4,11 @@ import {
   getAllBooks,
   updateBooks,
 } from "../models/bookModel.js";
-import { deleteFile } from "../utils/fileUtils.js";
+import {
+  checkDeleteFiles,
+  deleteFile,
+  deleteManyFiles,
+} from "../utils/fileUtils.js";
 
 export const addBookController = async (req, res, next) => {
   try {
@@ -13,6 +17,7 @@ export const addBookController = async (req, res, next) => {
     // console.log(req.files);
     const { path } = req.file;
     req.body.imgURL = path;
+    req.body.imageList = path;
     //console.log(req.body);
     const result = await addBook(req.body);
     res.json({
@@ -47,8 +52,9 @@ export const deleteBookController = async (req, res, next) => {
     const result = await deleteBooks(req.body);
 
     if (result?._id) {
-      deleteFile(result?.imgURL);
-      console.log(result);
+      //console.log(result);
+      const delFile = deleteManyFiles(result?.imageList);
+      //console.log(result);
       res.json({
         data: result,
         status: "success",

@@ -15,10 +15,12 @@ export const userMiddleWare = async (req, res, next) => {
   if (authorization) {
     // check if valid on JWT, not database , return email if valid
     const decode = verifyAccessJWT(authorization);
+
     if (decode.email) {
       // check if exist in session table
       const dbTokenSession = await getSession({ token: authorization });
-
+      // console.log(authorization);
+      // console.log(dbTokenSession);
       if (dbTokenSession?._id) {
         //get user by email
         const user = await getUserByEmail(decode.email);
@@ -35,7 +37,7 @@ export const userMiddleWare = async (req, res, next) => {
           req,
           res,
           message: "jwt expired",
-          statusCode: 401,
+          statusCode: 400,
         });
       }
     }
