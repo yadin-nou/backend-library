@@ -73,9 +73,9 @@ export const deleteBookController = async (req, res, next) => {
 
 export const updateBookController = async (req, res, next) => {
   try {
-    //console.log("body: ", req.body);
-    // console.log("files: ", req.files);
+    // console.log("body: ", req.body);
 
+    // console.log("files: ", req.files);
     if (req.files.length > 0) {
       // if imageList already exist
       if (req.body.imageList !== "") {
@@ -100,10 +100,6 @@ export const updateBookController = async (req, res, next) => {
         req.body.imageList = [];
       }
     }
-    // return res.json({
-    //   status: "error",
-    //   message: "Testing",
-    // });
 
     //req.body.imageList = [req.body.imgURL, ...req.files.map((f) => f.path)];
     req.body.expectAvailabilityDate =
@@ -125,6 +121,32 @@ export const updateBookController = async (req, res, next) => {
           status: "error",
           message: error.message,
         });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateBookImgController = async (req, res, next) => {
+  try {
+    //delete image by path
+    //delete image from imageList
+    req.body.imageList = req.body.imageList.filter(
+      (img) => img !== req.body.path,
+    );
+    const updateResult = await updateBooks(req.body._id, req.body);
+    if (updateResult) {
+      deleteFile(req.body.path);
+      res.json({
+        data: updateResult,
+        status: "success",
+        message: "Image deleted successfuly",
+      });
+    } else {
+      res.json({
+        status: "error",
+        message: error.message,
+      });
+    }
   } catch (error) {
     next(error);
   }

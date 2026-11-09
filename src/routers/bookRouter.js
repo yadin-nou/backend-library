@@ -4,6 +4,7 @@ import {
   deleteBookController,
   getAllBooksController,
   updateBookController,
+  updateBookImgController,
 } from "../controllers/bookController.js";
 
 const bookRouter = express.Router();
@@ -30,5 +31,11 @@ bookRouter.patch(
   adminAuthMiddleware,
   upload.array("image", 2),
   updateBookController,
+);
+bookRouter.patch(
+  "/delImgs",
+  userMiddleWare,
+  adminAuthMiddleware,
+  updateBookImgController,
 );
 export default bookRouter;
