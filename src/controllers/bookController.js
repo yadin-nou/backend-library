@@ -77,23 +77,34 @@ export const updateBookController = async (req, res, next) => {
     // console.log("files: ", req.files);
 
     if (req.files.length > 0) {
-      console.log("files have uploaded");
+      // if imageList already exist
+      if (req.body.imageList !== "") {
+        console.log("imageList is exist and have files too");
+        req.body.imageList = [
+          ...req.body.imageList.split(","),
+          ...req.files.map((f) => f.path),
+        ];
+      } else {
+        //if imageList empty but files have at least one.
+        console.log("imageList empty but files have at least one");
+        req.body.imageList = [...req.files.map((f) => f.path)];
+        req.body.imgURL = req.body.imageList[0];
+      }
     } else {
       if (req.body.imageList !== "") {
         req.body.imageList = req.body.imageList.split(",");
         //console.log(imgs, "------");
         //req.body.imageList=imgs
       } else {
-        console.log("empty:", req.body.imageList);
+        //console.log("empty:", req.body.imageList);
+        req.body.imageList = [];
       }
     }
     // return res.json({
     //   status: "error",
     //   message: "Testing",
     // });
-    // if files.length===0
-    //if imageList.length===0
-    //
+
     //req.body.imageList = [req.body.imgURL, ...req.files.map((f) => f.path)];
     req.body.expectAvailabilityDate =
       req.body.expectAvailabilityDate === "null"
