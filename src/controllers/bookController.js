@@ -73,12 +73,28 @@ export const deleteBookController = async (req, res, next) => {
 
 export const updateBookController = async (req, res, next) => {
   try {
-    // console.log(req.body);
-    // const { path } = req.files;
-    //console.log(req.image.file);
+    //console.log("body: ", req.body);
+    // console.log("files: ", req.files);
 
-    // console.log(req.files);
-    req.body.imageList = [req.body.imgURL, ...req.files.map((f) => f.path)];
+    if (req.files.length > 0) {
+      console.log("files have uploaded");
+    } else {
+      if (req.body.imageList !== "") {
+        req.body.imageList = req.body.imageList.split(",");
+        //console.log(imgs, "------");
+        //req.body.imageList=imgs
+      } else {
+        console.log("empty:", req.body.imageList);
+      }
+    }
+    // return res.json({
+    //   status: "error",
+    //   message: "Testing",
+    // });
+    // if files.length===0
+    //if imageList.length===0
+    //
+    //req.body.imageList = [req.body.imgURL, ...req.files.map((f) => f.path)];
     req.body.expectAvailabilityDate =
       req.body.expectAvailabilityDate === "null"
         ? null
