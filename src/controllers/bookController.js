@@ -73,20 +73,20 @@ export const deleteBookController = async (req, res, next) => {
 
 export const updateBookController = async (req, res, next) => {
   try {
-    // console.log("body: ", req.body);
+    //console.log("body: ", req.body.imageList);
 
     // console.log("files: ", req.files);
     if (req.files.length > 0) {
       // if imageList already exist
       if (req.body.imageList !== "") {
-        console.log("imageList is exist and have files too");
+        //console.log("imageList is exist and have files too");
         req.body.imageList = [
           ...req.body.imageList.split(","),
           ...req.files.map((f) => f.path),
         ];
       } else {
         //if imageList empty but files have at least one.
-        console.log("imageList empty but files have at least one");
+        //  console.log("imageList empty but files have at least one");
         req.body.imageList = [...req.files.map((f) => f.path)];
         req.body.imgURL = req.body.imageList[0];
       }
