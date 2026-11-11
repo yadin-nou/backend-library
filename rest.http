@@ -93,10 +93,16 @@ Content-Type: application/json
     "password":"123!Aa"
 }
 
+### get All users
+GET {{url}}{{link}}all
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5NDM5ODEyMiwiZXhwIjoxNzk0NDAwODIyfQ.P8cG7X_o6wVxlyLAz2is-kdMp1FrqkfiDG49JIekAqY
+
+
+
 ### logout user
 GET {{url}}{{auth}}logout
 Content-Type: application/json
-
 authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MTU0OTA1NywiZXhwIjoxNzkxNTQ5OTU3fQ.5o2MDWTsICd1zpcERD0zuczvthp4mwOa99e3yjv7QXE
 
 

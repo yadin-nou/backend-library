@@ -12,6 +12,9 @@ export const getUserByEmail = (email) => {
 export const getUserOne = (filter) => {
   return userSchema.findOne(filter);
 };
+export const getAllUsers = () => {
+  return userSchema.find();
+};
 
 export const updateUser = (filter, update) => {
   return userSchema.findOneAndUpdate(filter, update, {
