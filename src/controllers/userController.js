@@ -20,10 +20,19 @@ export const getAllUsersController = async (req, res, next) => {
   }
 };
 
-export const getPrfileController = async (req, res, next) => {
+export const getPrfileController = (req, res, next) => {
   try {
     // *** those code below executing after userMiddleWare finish ***
     const user = req.userInfo; // *** req.userInfo is sent from userMiddleWare after finishing check login ***
+    console.log(user, "hello");
+    if (!user) {
+      return responseClient({
+        req,
+        res,
+        message: "User Not Found",
+        statusCode: 401,
+      });
+    }
     user.password = undefined;
     user.refreshJWT = undefined;
     user.__v = undefined;

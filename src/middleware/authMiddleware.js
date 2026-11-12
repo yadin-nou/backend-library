@@ -11,7 +11,7 @@ export const userMiddleWare = async (req, res, next) => {
   // get accessJWT
   const { authorization } = req.headers;
   // console.log(authorization);
-  let message = "Unauthorized user";
+  let message = "Unauthorized user 1";
   if (authorization) {
     // check if valid on JWT, not database , return email if valid
     const decode = verifyAccessJWT(authorization);
@@ -45,7 +45,7 @@ export const userMiddleWare = async (req, res, next) => {
     message =
       decode.includes("jwt expired") || decode.includes("invalid")
         ? decode
-        : "Unauthorized user";
+        : "Unauthorized user 2";
   }
 
   responseClient({
