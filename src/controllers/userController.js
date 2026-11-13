@@ -24,7 +24,7 @@ export const getPrfileController = (req, res, next) => {
   try {
     // *** those code below executing after userMiddleWare finish ***
     const user = req.userInfo; // *** req.userInfo is sent from userMiddleWare after finishing check login ***
-    console.log(user, "hello");
+    // console.log(user, "hello");
     if (!user) {
       return responseClient({
         req,
