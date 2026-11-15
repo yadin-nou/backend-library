@@ -136,7 +136,7 @@ export const updateReviewApproveController = async (req, res, next) => {
         const message = isApproved
           ? "Review is approved"
           : "Review is set to NOT appoved!";
-        // console.log(message, "after result");
+        console.log(message, "after result");
         return responseClient({
           req,
           res,
