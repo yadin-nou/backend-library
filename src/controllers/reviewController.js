@@ -135,8 +135,8 @@ export const updateReviewApproveController = async (req, res, next) => {
       if (result?._id) {
         const message = isApproved
           ? "Review is approved"
-          : "Review is set to NOT appoved!";
-        console.log(message, "after result");
+          : "Review is set to NOT approved!";
+        console.log(message, "after result ", result?._id);
         return responseClient({
           req,
           res,
@@ -152,6 +152,13 @@ export const updateReviewApproveController = async (req, res, next) => {
           statusCode: 400,
         });
       }
+    } else {
+      return responseClient({
+        req,
+        res,
+        message: "You don't have access to this resource",
+        statusCode: 403,
+      });
     }
   } catch (error) {
     next(error);
