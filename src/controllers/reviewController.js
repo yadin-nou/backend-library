@@ -131,7 +131,7 @@ export const updateReviewApproveController = async (req, res, next) => {
       const { _id, isApproved } = req.body;
       // console.log(req.body, "body");
       const result = await updateReview({ _id }, { isApproved });
-      //console.log(result, "before If");
+      console.log(result, "before If");
       if (result?._id) {
         const message = isApproved
           ? "Review is approved"
