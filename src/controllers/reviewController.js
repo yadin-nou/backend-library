@@ -89,14 +89,14 @@ export const deleteReviewController = async (req, res, next) => {
           return responseClient({
             req,
             res,
-            result,
+            payload: updateBow,
             message: "Delete review Succesfully.",
           });
         } else {
           responseClient({
             req,
             res,
-            result,
+            payload: {},
             message: "Something went wrong with borrow!",
             statusCode: 401,
           });
@@ -105,7 +105,7 @@ export const deleteReviewController = async (req, res, next) => {
         responseClient({
           req,
           res,
-          result,
+          payload: {},
           message: "Something went wrong!",
           statusCode: 400,
         });
@@ -114,7 +114,7 @@ export const deleteReviewController = async (req, res, next) => {
       responseClient({
         req,
         res,
-        result,
+        payload: {},
         message: "Something went wrong!",
         statusCode: 400,
       });
@@ -127,27 +127,27 @@ export const deleteReviewController = async (req, res, next) => {
 export const updateReviewApproveController = async (req, res, next) => {
   try {
     if (req?.userInfo?.role === "admin") {
-      console.log(req?.userInfo?.role);
+      // console.log(req?.userInfo?.role);
       const { _id, isApproved } = req.body;
-      console.log(req.body, "body");
+      // console.log(req.body, "body");
       const result = await updateReview({ _id }, { isApproved });
-      console.log(result, "before If");
+      //console.log(result, "before If");
       if (result?._id) {
         const message = isApproved
           ? "Review is approved"
           : "Review is set to NOT appoved!";
-        console.log(message, "after result");
+        // console.log(message, "after result");
         return responseClient({
           req,
           res,
-          result,
+          payload: result,
           message,
         });
       } else {
         responseClient({
           req,
           res,
-          result,
+          payload: result,
           message: "Review is not Aprroved",
           statusCode: 400,
         });
