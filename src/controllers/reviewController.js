@@ -127,6 +127,7 @@ export const deleteReviewController = async (req, res, next) => {
 export const updateReviewApproveController = async (req, res, next) => {
   try {
     if (req?.userInfo?.role === "admin") {
+      console.log(req?.userInfo?.role);
       const { _id, isApproved } = req.body;
       const result = await updateReview({ _id }, { isApproved });
       if (result?._id) {

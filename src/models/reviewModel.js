@@ -28,7 +28,7 @@ export const getReviews = (filter) => {
     .populate({
       path: "userId",
       model: userSchema,
-      select: "fName role",
+      select: "fName role email",
     })
     .sort({ updatedAt: -1 });
 };

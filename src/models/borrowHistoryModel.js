@@ -20,7 +20,7 @@ export const getBorrows = (filter) => {
     .populate({
       path: "userId",
       model: userSchema,
-      select: "fName lName",
+      select: "fName lName email",
     })
     .sort({ updatedAt: -1 });
 };
