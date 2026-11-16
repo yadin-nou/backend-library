@@ -1,6 +1,7 @@
 import { isObjectIdOrHexString } from "mongoose";
 import borrowSchema from "./borrowHistorySchema.js";
 import userSchema from "./userSchema.js";
+import bookSchema from "./bookSchema.js";
 
 //insert new user
 
@@ -21,6 +22,11 @@ export const getBorrows = (filter) => {
       path: "userId",
       model: userSchema,
       select: "fName lName email",
+    })
+    .populate({
+      path: "bookId",
+      modle: bookSchema,
+      select: "title imgURL",
     })
     .sort({ updatedAt: -1 });
 };
