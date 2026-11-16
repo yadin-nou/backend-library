@@ -149,7 +149,7 @@ export const updateReviewApproveController = async (req, res, next) => {
           res,
           payload: result,
           message: "Review is not Aprroved",
-          statusCode: 400,
+          statusCode: 404,
         });
       }
     } else {

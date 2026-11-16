@@ -23,6 +23,15 @@ app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(express.static("public")); //tell the server want to public folder show as public
+
+//A 304 response has no body by definition, so the frontend sees “empty”
+//This controller can’t produce a 304, so something else answers before it runs
+app.set("etag", false);
+app.use("/api", (req, res, next) => {
+  res.set("Cache-Control", "no-store");
+  next();
+});
+
 app.use(userRouteLink, userRouter);
 app.use(bookRouteLink, bookRouter);
 app.use(borrowRouterLink, borrowRouter);
