@@ -5,7 +5,7 @@ export const addBook = (book) => {
 };
 //optionally filter by id (or other fields) while still supporting "get all"
 export const getAllBooks = (filter = {}) => {
-  return bookSchema.find(filter).sort({ updatedAt: -1 });
+  return bookSchema.find(filter).sort({ createdAt: -1 });
 };
 export const deleteBooks = (_ids) => {
   //return bookSchema.deleteMany({ _id: { $in: _ids } });

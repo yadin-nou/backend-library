@@ -10,14 +10,16 @@ import { responseClient } from "./responseClient.js";
 export const userMiddleWare = async (req, res, next) => {
   // get accessJWT
   const { authorization } = req.headers;
-  // console.log(authorization);
+
   let message = "Unauthorized user 1";
+  //console.log(authorization, "before");
   if (authorization) {
     // check if valid on JWT, not database , return email if valid
-    const decode = verifyAccessJWT(authorization);
 
+    const decode = verifyAccessJWT(authorization);
     if (decode.email) {
       // check if exist in session table
+      //console.log(authorization, "after verifyAccessJWT");
       const dbTokenSession = await getSession({ token: authorization });
       // console.log(authorization);
       // console.log(dbTokenSession);
