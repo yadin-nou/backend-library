@@ -65,11 +65,6 @@ export const getReviewController = async (req, res, next) => {
     }
     const payload = await getReviews(filter);
     if (payload) {
-      console.log("ABOUT TO SEND APPROVAL RESPONSE:", {
-        isApproved,
-        resultId: result?._id?.toString(),
-        statusCode: 200,
-      });
       return responseClient({
         req,
         res,
@@ -159,7 +154,7 @@ export const updateReviewApproveController = async (req, res, next) => {
 
     const result = await updateReview({ _id }, { isApproved });
 
-    console.log("Updated review:", result);
+    // console.log("Updated review:", result);
 
     if (!result?._id) {
       return responseClient({
@@ -169,7 +164,11 @@ export const updateReviewApproveController = async (req, res, next) => {
         statusCode: 404,
       });
     }
-
+    console.log("ABOUT TO SEND APPROVAL RESPONSE:", {
+      isApproved,
+      resultId: result?._id?.toString(),
+      statusCode: 200,
+    });
     return responseClient({
       req,
       res,
