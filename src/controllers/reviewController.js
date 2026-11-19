@@ -126,35 +126,9 @@ export const deleteReviewController = async (req, res, next) => {
 
 export const updateReviewApproveController = async (req, res, next) => {
   try {
-    console.log("approve hit:", req.method, req.userInfo?.role, req.body);
-    if (req?.userInfo?.role === "admin") {
-      // console.log(req?.userInfo?.role);
-      const { _id, isApproved } = req.body;
-      // console.log(req.body, "body");
-      const result = await updateReview({ _id }, { isApproved });
-      // console.log(result, "before If");
-      if (result?._id) {
-        const message = isApproved
-          ? "Review is approved"
-          : "Review is set to NOT approved!";
-        // console.log(message, "after result ", result?._id);
-        return responseClient({
-          req,
-          res,
-          payload: result,
-          message,
-          statusCode: 200,
-        });
-      } else {
-        responseClient({
-          req,
-          res,
-          payload: result,
-          message: "Review is not Aprroved",
-          statusCode: 404,
-        });
-      }
-    } else {
+    //  console.log("approve hit:", req.method, req.userInfo?.role, req.body);
+
+    if (req.userInfo?.role !== "admin") {
       return responseClient({
         req,
         res,
@@ -162,6 +136,40 @@ export const updateReviewApproveController = async (req, res, next) => {
         statusCode: 403,
       });
     }
+
+    const { _id, isApproved } = req.body;
+
+    if (!_id || typeof isApproved !== "boolean") {
+      return responseClient({
+        req,
+        res,
+        message: "Invalid review ID or approval status",
+        statusCode: 400,
+      });
+    }
+
+    const result = await updateReview({ _id }, { isApproved });
+
+    console.log("Updated review:", result);
+
+    if (!result?._id) {
+      return responseClient({
+        req,
+        res,
+        message: "Review not found or not updated",
+        statusCode: 404,
+      });
+    }
+
+    return responseClient({
+      req,
+      res,
+      payload: result,
+      message: isApproved
+        ? "Review is approved"
+        : "Review is set to NOT approved!",
+      statusCode: 200,
+    });
   } catch (error) {
     next(error);
   }

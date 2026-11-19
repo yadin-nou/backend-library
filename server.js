@@ -31,12 +31,7 @@ app.use("/api", (req, res, next) => {
   res.set("Cache-Control", "no-store");
   next();
 });
-app.use((req, res, next) => {
-  res.on("finish", () => {
-    console.log("FINAL:", req.method, req.originalUrl, res.statusCode);
-  });
-  next();
-});
+
 app.use(userRouteLink, userRouter);
 app.use(bookRouteLink, bookRouter);
 app.use(borrowRouterLink, borrowRouter);
