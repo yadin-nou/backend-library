@@ -21,7 +21,12 @@ reviewRouter.post(
 );
 //return all borrows for admin request only
 //check userMiddleware first, then check is admin or not
-reviewRouter.get("/admin", userMiddleWare, getReviewController);
+reviewRouter.get(
+  "/admin",
+  userMiddleWare,
+  adminAuthMiddleware,
+  getReviewController,
+);
 // //return all borrows for user request only
 reviewRouter.get("/", getReviewController);
 
