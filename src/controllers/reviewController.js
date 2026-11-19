@@ -136,12 +136,13 @@ export const updateReviewApproveController = async (req, res, next) => {
         const message = isApproved
           ? "Review is approved"
           : "Review is set to NOT approved!";
-        console.log(message, "after result ", result?._id);
+        // console.log(message, "after result ", result?._id);
         return responseClient({
           req,
           res,
           payload: result,
           message,
+          statusCode: 200,
         });
       } else {
         responseClient({
