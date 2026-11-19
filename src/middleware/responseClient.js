@@ -1,4 +1,3 @@
-//pass argument as object is better than normal, because they can be not in order.
 export const responseClient = ({
   req,
   res,
@@ -6,27 +5,51 @@ export const responseClient = ({
   payload,
   statusCode = 200,
 }) => {
-  //success response
-  req.success = () => {
-    return res.status(statusCode).json({
-      status: "success",
-      message,
-      payload,
-    });
+  const responseData = {
+    status: statusCode >= 200 && statusCode < 300 ? "success" : "error",
+    message,
+    payload,
   };
-  //error response
 
-  req.error = () => {
-    return res.status(statusCode).json({
-      status: "error",
-      message,
-      payload,
-    });
-  };
-  //status code between 200 to 300 is success response, otherwise, is error response
-  if (statusCode >= 200 && statusCode < 300) {
-    return req.success();
-  } else {
-    return req.error();
-  }
+  console.log("RESPONSE CLIENT:", {
+    method: req.method,
+    url: req.originalUrl,
+    statusCode,
+    responseData,
+  });
+
+  return res.status(statusCode).json(responseData);
 };
+
+// //pass argument as object is better than normal, because they can be not in order.
+// export const responseClient = ({
+//   req,
+//   res,
+//   message,
+//   payload,
+//   statusCode = 200,
+// }) => {
+//   //success response
+//   req.success = () => {
+//     return res.status(statusCode).json({
+//       status: "success",
+//       message,
+//       payload,
+//     });
+//   };
+//   //error response
+
+//   req.error = () => {
+//     return res.status(statusCode).json({
+//       status: "error",
+//       message,
+//       payload,
+//     });
+//   };
+//   //status code between 200 to 300 is success response, otherwise, is error response
+//   if (statusCode >= 200 && statusCode < 300) {
+//     return req.success();
+//   } else {
+//     return req.error();
+//   }
+// };
