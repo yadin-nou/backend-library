@@ -7,7 +7,9 @@ export const createReview = (revObj) => {
 };
 
 export const updateReview = (filter, obj) => {
-  return reviewSchema.findOneAndUpdate(filter, obj, { new: true });
+  return reviewSchema.findOneAndUpdate(filter, obj, {
+    returnDocument: "after",
+  });
 };
 export const deleteReview = (filter) => {
   return reviewSchema.findOneAndDelete(filter);
