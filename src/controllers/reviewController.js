@@ -65,6 +65,11 @@ export const getReviewController = async (req, res, next) => {
     }
     const payload = await getReviews(filter);
     if (payload) {
+      console.log("ABOUT TO SEND APPROVAL RESPONSE:", {
+        isApproved,
+        resultId: result?._id?.toString(),
+        statusCode: 200,
+      });
       return responseClient({
         req,
         res,
