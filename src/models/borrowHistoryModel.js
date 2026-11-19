@@ -28,5 +28,5 @@ export const getBorrows = (filter) => {
       modle: bookSchema,
       select: "title imgURL",
     })
-    .sort({ updatedAt: -1 });
+    .sort({ createdAt: -1 });
 };

@@ -164,11 +164,7 @@ export const updateReviewApproveController = async (req, res, next) => {
         statusCode: 404,
       });
     }
-    console.log("ABOUT TO SEND APPROVAL RESPONSE:", {
-      isApproved,
-      resultId: result?._id?.toString(),
-      statusCode: 200,
-    });
+
     return responseClient({
       req,
       res,
