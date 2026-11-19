@@ -128,6 +128,7 @@ export const updateReviewApproveController = async (req, res, next) => {
   try {
     if (req?.userInfo?.role === "admin") {
       // console.log(req?.userInfo?.role);
+      console.log("approve hit:", req.method, req.userInfo?.role, req.body);
       const { _id, isApproved } = req.body;
       // console.log(req.body, "body");
       const result = await updateReview({ _id }, { isApproved });
