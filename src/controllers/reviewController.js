@@ -54,6 +54,10 @@ export const inserReviewController = async (req, res, next) => {
 export const getReviewController = async (req, res, next) => {
   try {
     const filter = {};
+    console.log("GET ADMIN:", {
+      role: req.userInfo?.role,
+      filter,
+    });
     //is admin requesting or public
     if (req?.userInfo?.role !== "admin") {
       //filter only approved review to show to public
