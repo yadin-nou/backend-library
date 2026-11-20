@@ -1,6 +1,7 @@
 @url=http://localhost:8000
 @link=/api/v1/users/
-
+@awsfr=http://lms-yd-bucket.s3-website-ap-southeast-2.amazonaws.com
+@awsbe=http://lms-be-env.eba-qcc7stfw.ap-southeast-2.elasticbeanstalk.com
 @admin=/api/v1/book/
 @auth=/api/v1/auth/
 @borrow=/api/v1/borrows/
@@ -202,9 +203,19 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3Q
 ### update review
 PATCH {{url}}{{review}}admin
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5MzI4MjA0MywiZXhwIjoxNzkzMjgyOTQzfQ.YFMtZndUixE8umum1UBMCaOIDvLwW5YHgUVgMEIoWYY
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5NTE4NDk2MywiZXhwIjoxNzk1MTg3NjYzfQ.8I6-j7aNGxDH4G0M4ZR_aqnK4Y1y8OgyhqVUD6m2970
     
     {
      "_id":"6ae34b6273f2c67f6bade455",
-     "isApproved":false
+     "isApproved":true
+    }    
+
+### update review at AWS server
+PATCH {{awsbe}}{{review}}admin
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXlhZGluMDA3QGdtYWlsLmNvbSIsImlhdCI6MTc5NTE4NDI1OCwiZXhwIjoxNzk1MTg2OTU4fQ.ePJxZK2PMtTpR6sUN5g8fQWijgZP5Vlx1t4lh1u_f38
+     
+     {
+     "_id":"6aff22a9e3d350f653b5cfdb",
+     "isApproved":true
     }    
