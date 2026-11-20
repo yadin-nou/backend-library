@@ -4,7 +4,8 @@ export const userActivationUrlEMailTemplate = ({ email, name, url }) => {
     to: email,
     subject: "Acction Required- Activate your new account",
     text: `Hello ${name} follow the link to activate your account.`,
-    html: `<p>Your account has been reated. Click the button below to activate your account.</p>
+    html: `<p>Hello ${name} follow the link to activate your account.
+           Your account has been created. Click the button below to activate your account.</p>
             <br/>
             <br/>
             <a href="${url}">
@@ -25,7 +26,8 @@ export const userAccountActivatedNotificationTem = ({ email, name, url }) => {
     to: email,
     subject: "Great News! Activate your new account",
     text: `Hello ${name} , your account has been activated.`,
-    html: `<p>Your account has been activated. Click here to login.</p>
+    html: `Hello ${name} , your account has been activated.
+    <p>Your account has been activated. Click here to login.</p>
             <br/>
             <br/>
             <a href="${url}">

@@ -48,6 +48,7 @@ export const inserNewUser = async (req, res, next) => {
           session.token;
         await userActivationUrlEmail({
           email: user.email,
+          name: user.fName,
           url: url,
         });
       }
@@ -138,12 +139,12 @@ export const activateUser = async (req, res, next) => {
   const front_url = process.env.URL_FRONTEND;
   try {
     const { sessionId, t } = req.body;
-    console.log(req.body);
+    //console.log(req.body);
     const result = await deleteSession({
       _id: sessionId,
       token: t,
     });
-    console.log(result, "avtive user");
+    //console.log(result, "avtive user");
     // after delete successfull server response back with data have been deleted
     // so we can catch up association field which contain email.
 
