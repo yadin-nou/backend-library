@@ -170,7 +170,7 @@ export const updateReviewApproveController = async (req, res, next) => {
       res,
       payload: result,
       message: isApproved
-        ? "Review is approved"
+        ? "Review is approved!"
         : "Review is set to NOT approved!",
       statusCode: 200,
     });
