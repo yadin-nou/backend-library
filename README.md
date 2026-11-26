@@ -2,7 +2,7 @@
 
 A full-stack web app for managing a library's book catalogue, User Authentication reviewing and borrowing process, built with React, Node.js, and MongoDB.
 
-![Websute Screenshort](./library_project.jpg)
+![Websute Screenshort](./src/library_project.jpg)
 
 ## Table of Contents
 
