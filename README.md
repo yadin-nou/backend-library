@@ -187,7 +187,7 @@ To set up this project in your device locally, please follow the steps:
 
 ## Enviroment Variables
 
-Environment variables is added t server.
+Environment variables is added to server.
 
 ## Project Workflow
 
@@ -255,21 +255,21 @@ LMS Backend
 | | |-- sessionModel.js
 | | |-- sessionSchema.js
 | |-- Routers
-| | |--userRouter.js
-| | |--authRoutes.js
-| | |--bookRouter.js
-| | |--borrowRoute.js
-| | |--reviewRoute.js
+| | |-- userRouter.js
+| | |-- authRoutes.js
+| | |-- bookRouter.js
+| | |-- borrowRoute.js
+| | |-- reviewRoute.js
 | |-- services
-| | |--emailService.js
-| | |--emailTemplate.js
-| | |--transport.js
+| | |-- emailService.js
+| | |-- emailTemplate.js
+| | |-- transport.js
 | |-- utils
-| | |-bcrypt.js
-| | |-jwt.js
-| | |-fileUtils.js
-| | |-multer.js
-| | |-randomGenderate.js
+| | |-- bcrypt.js
+| | |-- jwt.js
+| | |-- fileUtils.js
+| | |-- multer.js
+| | |-- randomGenderate.js
 |-- rest.http
 |-- server.js
 |-- package.json
@@ -380,16 +380,16 @@ LMS Frontend
 | | |--|--|--UserPage.jsx
 | | |--|--|--UsersTable.jsx
 | |-- redux
-| | |--rootReducer.js
-| | |--store.js
+| | |-- rootReducer.js
+| | |-- store.js
 | |-- routes
-| | |--AppRoutes.js
+| | |-- AppRoutes.js
 | |-- service
-| | |--api.js
-| | |--authAPI.js
+| | |-- api.js
+| | |-- authAPI.js
 | |-- utils
-| | |--starRating.jsx
-| | |--validatePassword.js
+| | |-- starRating.jsx
+| | |-- validatePassword.js
 |-- App.jsx
 |-- main.jsx
 |-- App.css
