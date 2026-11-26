@@ -20,6 +20,11 @@ const reviewRouterLink = "/api/v1/reviews";
 //database conneciton
 
 app.use(cors());
+app.use(
+  cors({
+    origin: ["https://d1og1k2jxita5l.cloudfront.net", "http://localhost:5173"],
+  }),
+);
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(express.static("public")); //tell the server want to public folder show as public
